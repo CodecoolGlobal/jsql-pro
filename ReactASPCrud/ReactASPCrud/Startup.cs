@@ -20,7 +20,7 @@ namespace ReactASPCrud
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSingleton<UserService>();
+            services.AddSingleton<RecordService>();
 
             services.AddCors(o => o.AddPolicy("ReactPolicy", builder =>
             {
