@@ -23,25 +23,25 @@ namespace ReactASPCrud.Controllers
 
         // GET api/records/data
         [HttpGet("data")]
-        public IEnumerable<ExpandoObject> Get()
+        public IEnumerable<Table> Get()
         {
             return recordService.GetAll();
         }
 
-        // GET api/records/5
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> Get(int id)
-        //{
-        //    return Ok(userService.GetById(id));
-        //}
+        //GET api/records/data/myTable
+        [HttpGet("data/{name}")]
+        public async Task<IActionResult> Get(string name)
+        {
+            return Ok(recordService.GetByTableName(name));
+        }
 
         // POST api/records
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Record record)
         {
-            recordService.GenerateTableCols(record);
+            recordService.SplitInputString(record);
 
-            return CreatedAtAction("Get", new { id = record.Id }, recordService.GenerateDynamicObject());
+            return CreatedAtAction("Get", new { id = record.Id }, recordService.manageTable());
         }
 
         // PUT api/records/5
