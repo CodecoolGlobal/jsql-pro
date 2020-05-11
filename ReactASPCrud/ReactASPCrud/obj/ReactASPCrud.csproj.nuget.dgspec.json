@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kruppa\\Documents\\ReactASPNET\\ReactASPCrud\\ReactASPCrud\\ReactASPCrud.csproj": {}
+    "C:\\Users\\Kruppa\\Documents\\codecool\\mastery\\jsql-pro\\ReactASPCrud\\ReactASPCrud\\ReactASPCrud.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kruppa\\Documents\\ReactASPNET\\ReactASPCrud\\ReactASPCrud\\ReactASPCrud.csproj": {
+    "C:\\Users\\Kruppa\\Documents\\codecool\\mastery\\jsql-pro\\ReactASPCrud\\ReactASPCrud\\ReactASPCrud.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kruppa\\Documents\\ReactASPNET\\ReactASPCrud\\ReactASPCrud\\ReactASPCrud.csproj",
+        "projectUniqueName": "C:\\Users\\Kruppa\\Documents\\codecool\\mastery\\jsql-pro\\ReactASPCrud\\ReactASPCrud\\ReactASPCrud.csproj",
         "projectName": "ReactASPCrud",
-        "projectPath": "C:\\Users\\Kruppa\\Documents\\ReactASPNET\\ReactASPCrud\\ReactASPCrud\\ReactASPCrud.csproj",
+        "projectPath": "C:\\Users\\Kruppa\\Documents\\codecool\\mastery\\jsql-pro\\ReactASPCrud\\ReactASPCrud\\ReactASPCrud.csproj",
         "packagesPath": "C:\\Users\\Kruppa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kruppa\\Documents\\ReactASPNET\\ReactASPCrud\\ReactASPCrud\\obj\\",
+        "outputPath": "C:\\Users\\Kruppa\\Documents\\codecool\\mastery\\jsql-pro\\ReactASPCrud\\ReactASPCrud\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
