@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OJQl0PsPpv2hyqLKH9mqOA7/4u2G56vSlaIVnHc+3YZojSf4M2uFGI1D6LIJG8/PsTaJgk9+ZtnPtd8JxAigxg==",
+  "dgSpecHash": "HNAhPtNR6vMZvcTvc8lOBbh3gBB9Ij75i5YvRA2vScOlDi3P0I8KBGD8BLSHRxNe0wzW3w5Na29IKSTbP5wm5w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Kruppa\\Documents\\codecool\\mastery\\jsql-pro\\ReactASPCrud\\ReactASPCrud\\ReactASPCrud.csproj",
+  "projectFilePath": "C:\\Users\\Kruppa\\Desktop\\m-eyeSQL\\jsql-pro\\ReactASPCrud\\ReactASPCrud\\ReactASPCrud.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore\\2.1.1\\microsoft.aspnetcore.2.1.1.nupkg.sha512",
