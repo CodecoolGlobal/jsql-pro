@@ -7,6 +7,6 @@ public class CreateTest extends Initialization {
     @Test
     public void createATable() {
         homePage.fillTheTextInputToCreate();
-        homePage.checkTableRow();
+        homePage.checkTableTitle();
     }
 }

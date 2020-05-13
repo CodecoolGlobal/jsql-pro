@@ -11,8 +11,10 @@ public class HomePage extends BasePage {
     private WebDriverWait wait;
     @FindBy(xpath = "//input[@name='name']")
     private WebElement textInput;
-    @FindBy(xpath = "//*[text()='string']")
-    private WebElement checkTableRow;
+    @FindBy(xpath = "//*[text()='myTable']")
+    private WebElement checkTableTitle;
+    @FindBy(xpath = "//*[text()='József']")
+    private WebElement checkTableRecord;
     private WebElement checkTask;
     private WebElement solutionButton;
     private WebElement resetButton;
@@ -31,10 +33,15 @@ public class HomePage extends BasePage {
 
     public void fillTheTextInputToInsert() {
         textInput.sendKeys("INSERT INTO myTable (József, Józsi, 60, 92);");
+        textInput.sendKeys(Keys.ENTER);
     }
 
-    public boolean checkTableRow() {
-        return checkTableRow.isDisplayed();
+    public boolean checkTableTitle() {
+        return checkTableTitle.isDisplayed();
+    }
+
+    public boolean checkTableRecord() {
+        return checkTableRecord.isDisplayed();
     }
 
     public boolean checkTask() {

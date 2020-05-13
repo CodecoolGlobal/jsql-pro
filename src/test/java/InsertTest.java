@@ -7,6 +7,6 @@ public class InsertTest extends Initialization {
     @Test
     public void insertATable() {
         homePage.fillTheTextInputToInsert();
-        homePage.checkTableRow();
+        homePage.checkTableRecord();
     }
 }
