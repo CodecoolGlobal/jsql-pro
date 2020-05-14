@@ -206,7 +206,7 @@ namespace ReactASPCrud.Services
             {
                 selectedObjects.Add(JsonConvert.DeserializeObject<ExpandoObject>(record, new ExpandoObjectConverter()));
             }
-            if(selectedValues.Count().Equals(1) && selectedValues[1].Equals("*"))
+            if(selectedValues.Count().Equals(1) && selectedValues[0].Equals("*"))
             {
                 foreach (var exp in selectedObjects)
                 {
@@ -243,6 +243,16 @@ namespace ReactASPCrud.Services
             return new Table();
         }
 
+        public Table DeleteTable(int tableIndexSelect)
+        {
+            if(tableIndexSelect >= 0)
+            {
+                records.RemoveAt(tableIndexSelect);
+            }
+
+            return new Table();
+        }
+
         public Table manageTable()
         {
             switch (keyWords[0])
@@ -267,8 +277,10 @@ namespace ReactASPCrud.Services
                     }
 
                 case "SELECT":
-
                         return SelectColumns(getTableIndexSelect());
+
+                case "DELETE":
+                    return DeleteTable(getTableIndexSelect());
 
 
                 default:
