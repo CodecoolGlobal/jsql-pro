@@ -26,7 +26,7 @@ render() {
     }
   </div>
   <div>{!items || items.length <= 0 ?
-    <p>empty</p>
+    <p></p>
   :<Table striped>
       <thead className="thead-dark">
 
