@@ -54,6 +54,15 @@ public class HomePage extends BasePage {
         return checkTableRecord.isDisplayed();
     }
 
+    public void createATable(){
+        fillTheTextInputToCreate();
+        checkTableTitle();
+    }
+
+    public void deleteATable(){
+        fillTheTextInputToDelete();
+    }
+
     public boolean checkTask() {
         return checkTask.isDisplayed();
     }

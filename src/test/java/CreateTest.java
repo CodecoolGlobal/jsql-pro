@@ -8,5 +8,6 @@ public class CreateTest extends Initialization {
     public void createATable() {
         homePage.fillTheTextInputToCreate();
         homePage.checkTableTitle();
+        homePage.deleteATable();
     }
 }

@@ -6,7 +6,9 @@ public class InsertTest extends Initialization {
 
     @Test
     public void insertATable() {
+        homePage.createATable();
         homePage.fillTheTextInputToInsert();
         homePage.checkTableRecord();
+        homePage.deleteATable();
     }
 }

@@ -7,6 +7,7 @@ public class SelectTest extends Initialization {
 
     @Test
     public void selectQuery() {
+        homePage.createATable();
         homePage.fillTheTextInputToSelect();
         homePage.checkTableTitle();
     }
