@@ -36,6 +36,16 @@ public class HomePage extends BasePage {
         textInput.sendKeys(Keys.ENTER);
     }
 
+    public void fillTheTextInputToDelete() {
+        textInput.sendKeys("DELETE myTable;");
+        textInput.sendKeys(Keys.ENTER);
+    }
+
+    public void fillTheTextInputToSelect() {
+        textInput.sendKeys("SELECT * FROM myTable;");
+        textInput.sendKeys(Keys.ENTER);
+    }
+
     public boolean checkTableTitle() {
         return checkTableTitle.isDisplayed();
     }
