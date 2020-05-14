@@ -58,11 +58,8 @@ C:\Users\Kruppa\Desktop\m-eyeSQL\jsql-pro\ReactASPCrud\ReactASPCrud\bin\Debug\ne
 C:\Users\Kruppa\Desktop\m-eyeSQL\jsql-pro\ReactASPCrud\ReactASPCrud\bin\Debug\netcoreapp2.1\ReactASPCrud.pdb
 C:\Users\Kruppa\Desktop\m-eyeSQL\jsql-pro\ReactASPCrud\ReactASPCrud\obj\Debug\netcoreapp2.1\ReactASPCrud.csprojAssemblyReference.cache
 C:\Users\Kruppa\Desktop\m-eyeSQL\jsql-pro\ReactASPCrud\ReactASPCrud\obj\Debug\netcoreapp2.1\ReactASPCrud.csproj.CoreCompileInputs.cache
-C:\Users\Kruppa\Desktop\m-eyeSQL\jsql-pro\ReactASPCrud\ReactASPCrud\obj\Debug\netcoreapp2.1\ReactASPCrud.RazorAssemblyInfo.cache
-C:\Users\Kruppa\Desktop\m-eyeSQL\jsql-pro\ReactASPCrud\ReactASPCrud\obj\Debug\netcoreapp2.1\ReactASPCrud.RazorAssemblyInfo.cs
 C:\Users\Kruppa\Desktop\m-eyeSQL\jsql-pro\ReactASPCrud\ReactASPCrud\obj\Debug\netcoreapp2.1\ReactASPCrud.AssemblyInfoInputs.cache
 C:\Users\Kruppa\Desktop\m-eyeSQL\jsql-pro\ReactASPCrud\ReactASPCrud\obj\Debug\netcoreapp2.1\ReactASPCrud.AssemblyInfo.cs
-C:\Users\Kruppa\Desktop\m-eyeSQL\jsql-pro\ReactASPCrud\ReactASPCrud\obj\Debug\netcoreapp2.1\ReactASPCrud.RazorTargetAssemblyInfo.cache
 C:\Users\Kruppa\Desktop\m-eyeSQL\jsql-pro\ReactASPCrud\ReactASPCrud\obj\Debug\netcoreapp2.1\ReactASPCrud.dll
 C:\Users\Kruppa\Desktop\m-eyeSQL\jsql-pro\ReactASPCrud\ReactASPCrud\obj\Debug\netcoreapp2.1\ReactASPCrud.pdb
 C:\Users\Kruppa\Desktop\m-eyeSQL\jsql-pro\ReactASPCrud\ReactASPCrud\obj\Debug\netcoreapp2.1\ReactASPCrud.genruntimeconfig.cache

@@ -206,7 +206,21 @@ namespace ReactASPCrud.Services
             {
                 selectedObjects.Add(JsonConvert.DeserializeObject<ExpandoObject>(record, new ExpandoObjectConverter()));
             }
+            if(selectedValues.Count().Equals(1) && selectedValues[1].Equals("*"))
+            {
+                foreach (var exp in selectedObjects)
+                {
+                    dynamic expado = new ExpandoObject();
 
+                    foreach (KeyValuePair<string, object> kvp in exp)
+                    {
+                            AddProperty(expado, kvp.Key, kvp.Value);
+                    }
+                    selected.Add(expado);
+                }
+            }
+            else
+            {
             foreach (var exp in selectedObjects)
             {
             dynamic expado = new ExpandoObject();
@@ -217,12 +231,9 @@ namespace ReactASPCrud.Services
                     {
                         AddProperty(expado, kvp.Key, kvp.Value);
                     }
-
-                    string kkey = kvp.Key;
-                    object vvalue = kvp.Value;
-                    Console.WriteLine(kvp.Key + ": " + kvp.Value);
                 }
                 selected.Add(expado);
+            }
             }
 
 

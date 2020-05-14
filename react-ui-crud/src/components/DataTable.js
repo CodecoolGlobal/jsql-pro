@@ -4,76 +4,95 @@ import { API_URL } from '../constants';
 
 class DataTable extends Component {
 
-  render() {
-    const items = this.props.items;
+render() {
+  const items = this.props.items;
+  const allItems = this.props.allItems;
 
-    return <div>
-    {items.map(item => (
-      <div>
-      <h1>{item.name}</h1>
-      <Table striped>
-        <thead className="thead-dark">
-          {item.deserialisedRecords.slice(0,1).map(srec => (
-            <tr>
-            {Object.keys(srec).map(function(key)
-              { return <th>{key}</th>;})} 
-            </tr>
-            ))}
-        </thead>
-        <tbody>
-          {item.deserialisedRecords.map(srec => (
-            <tr>
-              {Object.keys(srec).map(function(key)
-                { return <td>{srec[key]}</td>;})} 
-            </tr>
-          ))}
-        </tbody> 
-     </Table>
-     </div>
+  return <div>
+  <div>
+    {!allItems || allItems.length <= 0 ? 
+    <p>There is no tabels</p>
+    : <div>
+      <td>Tables:</td>
+      {
+    allItems.map(allitem =>(
+
+        <td>
+        <p>&nbsp;&nbsp;{allitem.name}</p>
+
+        </td>
     ))}
     </div>
-  }
+    }
+  </div>
+  <div>{!items || items.length <= 0 ?
+    <p>empty</p>
+  :<Table striped>
+      <thead className="thead-dark">
+
+  {items.slice(0,1).map(item => (
+
+       
+          <tr>
+          {Object.keys(item).map(function(key)
+            { return <th>{key}</th>;})} 
+          </tr>
+          ))}
+      </thead>
+      <tbody>
+        {items.map(item => (
+          <tr>
+            {Object.keys(item).map(function(key)
+              { return <td>{item[key]}</td>;})} 
+          </tr>
+        ))}
+      </tbody> 
+   </Table>}
+   </div>
+   </div>
+}
 }
 
 export default DataTable;
 
 
-//WORKING RENDER selected items!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// render() {
-//   const items = this.props.items;
+//WORKING RENDER all tables!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-//   return <div>{!items || items.length <= 0 ?
-//     <p>empty</p>
-//   :<Table striped>
-//       <thead className="thead-dark">
 
-//   {items.slice(0,1).map(item => (
+// class DataTable extends Component {
 
-       
-//           <tr>
-//           {!items || items.length <= 0 ?
-//           <p>empty</p>
-//           :Object.keys(item).map(function(key)
-//             { return <th>{key}</th>;})} 
-//           </tr>
+//   render() {
+//     const items = this.props.items;
+
+//     return <div>
+//     {items.map(item => (
+//       <div>
+//       <h1>{item.name}</h1>
+//       <Table striped>
+//         <thead className="thead-dark">
+//           {item.deserialisedRecords.slice(0,1).map(srec => (
+//             <tr>
+//             {Object.keys(srec).map(function(key)
+//               { return <th>{key}</th>;})} 
+//             </tr>
+//             ))}
+//         </thead>
+//         <tbody>
+//           {item.deserialisedRecords.map(srec => (
+//             <tr>
+//               {Object.keys(srec).map(function(key)
+//                 { return <td>{srec[key]}</td>;})} 
+//             </tr>
 //           ))}
-//       </thead>
-//       <tbody>
-//         {items.map(item => (
-//           <tr>
-//             {!items || items.length <= 0 ?
-//           <p>empty</p>
-//           :Object.keys(item).map(function(key)
-//               { return <td>{item[key]}</td>;})} 
-//           </tr>
-//         ))}
-//       </tbody> 
-//    </Table>}
-//    </div>
-// }
+//         </tbody> 
+//      </Table>
+//      </div>
+//     ))}
+//     </div>
+//   }
 // }
 
-//WORKING RENDER selested!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//WORKING RENDER all tables!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 
