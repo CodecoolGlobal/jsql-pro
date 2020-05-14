@@ -38,6 +38,45 @@ class DataTable extends Component {
 export default DataTable;
 
 
+//WORKING RENDER selected items!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// render() {
+//   const items = this.props.items;
+
+//   return <div>{!items || items.length <= 0 ?
+//     <p>empty</p>
+//   :<Table striped>
+//       <thead className="thead-dark">
+
+//   {items.slice(0,1).map(item => (
+
+       
+//           <tr>
+//           {!items || items.length <= 0 ?
+//           <p>empty</p>
+//           :Object.keys(item).map(function(key)
+//             { return <th>{key}</th>;})} 
+//           </tr>
+//           ))}
+//       </thead>
+//       <tbody>
+//         {items.map(item => (
+//           <tr>
+//             {!items || items.length <= 0 ?
+//           <p>empty</p>
+//           :Object.keys(item).map(function(key)
+//               { return <td>{item[key]}</td>;})} 
+//           </tr>
+//         ))}
+//       </tbody> 
+//    </Table>}
+//    </div>
+// }
+// }
+
+//WORKING RENDER selested!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
 // render() {
 //   const items = this.props.items;
 //   return (
