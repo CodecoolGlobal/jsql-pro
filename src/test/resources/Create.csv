@@ -1,0 +1,9 @@
+CreateText
+CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight);
+CREATE TABLE movies (string title, int32 release date, int32 runtime, string genre);
+CREATE TABLE without; (string name, string nickname, int32 age, int32 weight)
+CREATE TABLE invalidFormat (name, string nickname, int32 age, int32 weight);
+CREATE TABLE invalidFormat2 (string name, string nickname, int32 age, int32);
+CREATE TABLE invalidFormat3 (string name, string int32 age, int32 weight);
+CREATE TABLE invalidFormat4 (b name, s nickname, i age, i weight);
+SELECT TABLE(string namee, string nickname, int32 age, int32 weight);
