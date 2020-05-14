@@ -102,6 +102,7 @@ _UpgradeReport_Files/
 bin/
 obj/
 .vs/
+.vscode/
 TestResults/
 ###################
 # Web publish log #
@@ -125,6 +126,7 @@ TestResults/
 *.rar
 *.tar
 *.zip
+*.sln
 ######################
 # Logs and databases #
 ######################

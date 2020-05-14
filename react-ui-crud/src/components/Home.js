@@ -8,7 +8,8 @@ import { API_URL } from '../constants';
 class Home extends Component {
 
   state = {
-    items: []
+    items: [],
+    allItems: []
   }
 
   componentDidMount() {
@@ -16,41 +17,29 @@ class Home extends Component {
   }
 
   getItens = () => {
-    fetch(`${API_URL}/data`)
+    fetch(`${API_URL}/select`)
       .then(res => res.json())
       .then(res => this.setState({ items: res }))
       .catch(err => console.log(err));
+
+      fetch(`${API_URL}/data`)
+      .then(res => res.json())
+      .then(res => this.setState({ allItems: res }))
+      .catch(err => console.log(err));
   }
 
-  addRecordToState = record => {
-    this.setState(previous => ({
-      items: [...previous.items, record]
-    }));
-  }
-
-  updateState = (id) => {
-    this.getItens();
-  }
-
-  deleteItemFromState = id => {
-    const updated = this.state.items.filter(item => item.id !== id);
-    this.setState({ items: updated })
-  }
 
   render() {
     return <Container style={{ paddingTop: "100px" }}>
       <Row>
         <Col>
-        <InputForm
-                        addRecordToState={this.addRecordToState}
-                        updateRecordIntoState={this.updateRecordIntoState}
-                        toggle={this.toggle}
-                        user={this.user} />
+        <InputForm/>
         </Col>
       </Row>
       <Row>
         <Col>
           <DataTable
+          allItems={this.state.allItems}
             items={this.state.items}
             updateState={this.updateState}
             deleteItemFromState={this.deleteItemFromState} />
