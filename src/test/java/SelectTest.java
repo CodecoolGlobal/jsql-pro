@@ -1,4 +1,5 @@
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class SelectTest extends Initialization {
@@ -9,6 +10,6 @@ public class SelectTest extends Initialization {
     public void selectQuery() {
         homePage.createATable();
         homePage.fillTheTextInputToSelect();
-        homePage.checkTableTitle();
+        Assertions.assertTrue(homePage.checkTableTitleIsDisplayed());
     }
 }

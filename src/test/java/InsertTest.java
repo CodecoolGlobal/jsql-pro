@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class InsertTest extends Initialization {
@@ -8,7 +9,7 @@ public class InsertTest extends Initialization {
     public void insertATable() {
         homePage.createATable();
         homePage.fillTheTextInputToInsert();
-        homePage.checkTableRecord();
+        Assertions.assertTrue(homePage.checkTableRecord());
         homePage.deleteATable();
     }
 }

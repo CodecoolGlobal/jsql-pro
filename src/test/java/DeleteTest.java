@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class DeleteTest extends Initialization{
@@ -7,5 +8,6 @@ public class DeleteTest extends Initialization{
     @Test
     public void deleteATable(){
         homePage.fillTheTextInputToDelete();
+        Assertions.assertFalse(homePage.checkTableTitleIsNotDisplayed());
     }
 }

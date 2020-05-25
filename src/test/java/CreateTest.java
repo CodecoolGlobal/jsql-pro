@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CreateTest extends Initialization {
@@ -7,7 +8,7 @@ public class CreateTest extends Initialization {
     @Test
     public void createATable() {
         homePage.fillTheTextInputToCreate();
-        homePage.checkTableTitle();
         homePage.deleteATable();
+        Assertions.assertTrue(homePage.checkTableTitleIsDisplayed());
     }
 }

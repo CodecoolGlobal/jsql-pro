@@ -30,11 +30,13 @@ public class HomePage extends BasePage {
     public void fillTheTextInputToCreate() {
         textInput.sendKeys("CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight);");
         textInput.sendKeys(Keys.ENTER);
+        textInput.clear();
     }
 
     public void fillTheTextInputToInsert() {
         textInput.sendKeys("INSERT INTO myTable (József, Józsi, 60, 92);");
         textInput.sendKeys(Keys.ENTER);
+        textInput.clear();
     }
 
     public void fillTheTextInputToDelete() {
@@ -47,18 +49,27 @@ public class HomePage extends BasePage {
         textInput.sendKeys(Keys.ENTER);
     }
 
-    public boolean checkTableTitle() {
+    public boolean checkTableTitleIsDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(checkTableTitle));
         return checkTableTitle.isDisplayed();
     }
 
+    public boolean checkTableTitleIsNotDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(checkTableTitle));
+        return !checkTableTitle.isDisplayed();
+    }
+
     public boolean checkTableRecord() {
+        wait.until(ExpectedConditions.elementToBeClickable(checkTableRecord));
         return checkTableRecord.isDisplayed();
     }
 
     public void createATable(){
-        fillTheTextInputToCreate();
-        checkTableTitle();
+        if(!checkTableTitleIsDisplayed()) {
+            fillTheTextInputToCreate();
+        } else {
+            checkTableTitleIsDisplayed();
+        }
     }
 
     public void deleteATable(){
