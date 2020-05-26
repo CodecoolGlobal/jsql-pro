@@ -4,53 +4,53 @@ import { API_URL } from '../constants';
 
 class DataTable extends Component {
 
-  render() {
-    const items = this.props.items;
-    const allItems = this.props.allItems;
+render() {
+  const items = this.props.items;
+  const allItems = this.props.allItems;
 
-    return <div>
-      <div>
-        {!allItems || allItems.length <= 0 ?
-            <p>There is no tabels</p>
-            : <div>
-              <td>Tables:</td>
-              {
-                allItems.map(allitem =>(
+  return <div>
+  <div>
+    {!allItems || allItems.length <= 0 ?
+    <p>There is no tabels</p>
+    : <div>
+      <td>Tables:</td>
+      {
+    allItems.map(allitem =>(
 
-                    <td>
-                      <p>&nbsp;&nbsp;{allitem.name}</p>
+        <td>
+        <p>&nbsp;&nbsp;{allitem.name}</p>
 
-                    </td>
-                ))}
-            </div>
-        }
-      </div>
-      <div>{!items || items.length <= 0 ?
-          <p></p>
-          :<Table striped>
-            <thead className="thead-dark">
-
-            {items.slice(0,1).map(item => (
-
-
-                <tr>
-                  {Object.keys(item).map(function(key)
-                  { return <th>{key}</th>;})}
-                </tr>
-            ))}
-            </thead>
-            <tbody>
-            {items.map(item => (
-                <tr>
-                  {Object.keys(item).map(function(key)
-                  { return <td>{item[key]}</td>;})}
-                </tr>
-            ))}
-            </tbody>
-          </Table>}
-      </div>
+        </td>
+    ))}
     </div>
-  }
+    }
+  </div>
+  <div>{!items || items.length <= 0 ?
+    <p></p>
+  :<Table striped>
+      <thead className="thead-dark">
+
+  {items.slice(0,1).map(item => (
+
+
+          <tr>
+          {Object.keys(item).map(function(key)
+            { return <th>{key}</th>;})}
+          </tr>
+          ))}
+      </thead>
+      <tbody>
+        {items.map(item => (
+          <tr>
+            {Object.keys(item).map(function(key)
+              { return <td>{item[key]}</td>;})}
+          </tr>
+        ))}
+      </tbody>
+   </Table>}
+   </div>
+   </div>
+}
 }
 
 export default DataTable;
@@ -105,7 +105,7 @@ export default DataTable;
 //         {
 //           items.map(item => (
 //             <p>
-//               {item.deserialisedRecords} 
+//               {item.deserialisedRecords}
 //             {/* {Object.keys(item.deserialisedRecords[0]).map(function(key)
 //             { return <div>
 //               Key: {key}, Value: {item.deserialisedRecords[0][key]}
@@ -119,33 +119,33 @@ export default DataTable;
 //       </div>
 //   )
 // }
-// deleteItem = id => {
-//   let confirmDeletion = window.confirm('Do you really wish to delete it?');
-//   if (confirmDeletion) {
-//     fetch(`${API_URL}/${id}`, {
-//       method: 'delete',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     })
-//       .then(res => {
-//         this.props.deleteItemFromState(id);
-//       })
-//       .catch(err => console.log(err));
-//   }
-// }
+  // deleteItem = id => {
+  //   let confirmDeletion = window.confirm('Do you really wish to delete it?');
+  //   if (confirmDeletion) {
+  //     fetch(`${API_URL}/${id}`, {
+  //       method: 'delete',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       }
+  //     })
+  //       .then(res => {
+  //         this.props.deleteItemFromState(id);
+  //       })
+  //       .catch(err => console.log(err));
+  //   }
+  // }
 
 
 // EZEGESZENJOVOLT
-// render() {
-//   const items = this.props.items;
-//   return <div>
-// <h2>valami {items.length}</h2>
-//   {items.map(item => (
-//    <p> {item.name}</p>
-//   ))}
-//   </div>
-// }
+  // render() {
+  //   const items = this.props.items;
+  //   return <div>
+  // <h2>valami {items.length}</h2>
+  //   {items.map(item => (
+  //    <p> {item.name}</p>
+  //   ))}
+  //   </div>
+  // }
 //     const items = this.props.items;
 //     return <Table striped>
 //       {/* <thead className="thead-dark">

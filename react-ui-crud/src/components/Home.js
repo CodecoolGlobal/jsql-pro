@@ -18,14 +18,14 @@ class Home extends Component {
 
   getItens = () => {
     fetch(`${API_URL}/select`)
-        .then(res => res.json())
-        .then(res => this.setState({ items: res }))
-        .catch(err => console.log(err));
+      .then(res => res.json())
+      .then(res => this.setState({ items: res }))
+      .catch(err => console.log(err));
 
-    fetch(`${API_URL}/data`)
-        .then(res => res.json())
-        .then(res => this.setState({ allItems: res }))
-        .catch(err => console.log(err));
+      fetch(`${API_URL}/data`)
+      .then(res => res.json())
+      .then(res => this.setState({ allItems: res }))
+      .catch(err => console.log(err));
   }
 
 
@@ -33,16 +33,16 @@ class Home extends Component {
     return <Container style={{ paddingTop: "100px" }}>
       <Row>
         <Col>
-          <InputForm/>
+        <InputForm/>
         </Col>
       </Row>
       <Row>
         <Col>
           <DataTable
-              allItems={this.state.allItems}
-              items={this.state.items}
-              updateState={this.updateState}
-              deleteItemFromState={this.deleteItemFromState} />
+          allItems={this.state.allItems}
+            items={this.state.items}
+            updateState={this.updateState}
+            deleteItemFromState={this.deleteItemFromState} />
         </Col>
       </Row>
     </Container>;
