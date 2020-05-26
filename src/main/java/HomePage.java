@@ -12,7 +12,7 @@ public class HomePage extends BasePage {
     private WebDriverWait wait;
     @FindBy(xpath = "//input[@name='name']")
     private WebElement textInput;
-    @FindBy(xpath = "//*[text()='myTable']")
+    @FindBy(xpath = "//*[text()='Tables']")
     private WebElement checkTableTitle;
     @FindBy(xpath = "//*[text()='József']")
     private WebElement checkTableRecord;
@@ -27,14 +27,20 @@ public class HomePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void fillTheTextInputToCreate() {
+    public void fillTheTextInputToCreateValid() {
         textInput.sendKeys("CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight);");
         textInput.sendKeys(Keys.ENTER);
         textInput.clear();
     }
 
-    public void fillTheTextInputToInsert() {
-        textInput.sendKeys("INSERT INTO myTable (József, Józsi, 60, 92);");
+    public void fillTheTextInputToCreate(String createTextInput) {
+        textInput.sendKeys(createTextInput);
+        textInput.sendKeys(Keys.ENTER);
+        textInput.clear();
+    }
+
+    public void fillTheTextInputToInsert(String insertIntoText) {
+        textInput.sendKeys(insertIntoText);
         textInput.sendKeys(Keys.ENTER);
         textInput.clear();
     }
@@ -44,8 +50,8 @@ public class HomePage extends BasePage {
         textInput.sendKeys(Keys.ENTER);
     }
 
-    public void fillTheTextInputToSelect() {
-        textInput.sendKeys("SELECT * FROM myTable;");
+    public void fillTheTextInputToSelect(String selectText) {
+        textInput.sendKeys(selectText);
         textInput.sendKeys(Keys.ENTER);
     }
 
@@ -66,7 +72,7 @@ public class HomePage extends BasePage {
 
     public void createATable(){
         if(!checkTableTitleIsDisplayed()) {
-            fillTheTextInputToCreate();
+            fillTheTextInputToCreateValid();
         } else {
             checkTableTitleIsDisplayed();
         }
