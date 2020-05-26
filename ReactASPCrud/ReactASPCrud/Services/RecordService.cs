@@ -1,16 +1,19 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using ReactASPCrud.Models;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Reflection;
 
 namespace ReactASPCrud.Services
 {
     public class RecordService
     {
         private static List<Table> records = new List<Table>();
+        private static List<ExpandoObject> selected = new List<ExpandoObject>();
         private static string[] inputStringSlices;
         private static string[] keyWords;
 
@@ -38,14 +41,27 @@ namespace ReactASPCrud.Services
             return records.Where(table => table.Name == name).FirstOrDefault();
         }
 
+        public List<ExpandoObject> GetSelected()
+        {
+            return selected;
+        }
+
 
         public void SplitInputString(Record user)
         {
-            int valuesStartFrom = user.Name.IndexOf("(");
-            string values = user.Name.Replace(",", "").Substring(user.Name.Length - (user.Name.Length - (valuesStartFrom + 1)));
-            inputStringSlices = values.Substring(0, values.Length - 2).Split(" ");
-            string keyvalues = user.Name.Substring(0, valuesStartFrom - 1);
-            keyWords = keyvalues.Split(" ");
+            if (user.Name.Contains("("))
+            {
+                int valuesStartFrom = user.Name.IndexOf("(");
+                string values = user.Name.Replace(",", "").Substring(user.Name.Length - (user.Name.Length - (valuesStartFrom + 1)));
+                inputStringSlices = values.Substring(0, values.Length - 2).Split(" ");
+                string keyvalues = user.Name.Substring(0, valuesStartFrom - 1);
+                keyWords = keyvalues.Split(" ");
+            }
+            else
+            {
+                string values = user.Name.Replace(",", "");
+                keyWords = values.Remove(values.Length-1).Split(" ");
+            }
         }
 
 
@@ -140,6 +156,23 @@ namespace ReactASPCrud.Services
             return tableInx;
         }
 
+        public int getTableIndexSelect()
+        {
+            int tableInx = -1;
+            for (int i = 0; i < records.Count; i++)
+            {
+                if (records[i].Name.Equals(keyWords[keyWords.Length-1]))
+                {
+                    tableInx = i;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            return tableInx;
+        }
+
 
         public Table insertIntoTable(int tableIndex)
         {
@@ -156,6 +189,68 @@ namespace ReactASPCrud.Services
             table.addRecord(strCust, expado);
 
             return table;
+        }
+
+        public Table SelectColumns(int tableIndexSelect)
+        {
+            selected.Clear();
+            Table table = records[tableIndexSelect];
+            List<string> selectedValues = new List<string>();
+            List<ExpandoObject> selectedObjects = new List<ExpandoObject>();
+
+            for(int i = 1; i < keyWords.Length-2; i++) {
+                selectedValues.Add(keyWords[i]);
+            }
+
+            foreach (var record in table.serialisedRecords)
+            {
+                selectedObjects.Add(JsonConvert.DeserializeObject<ExpandoObject>(record, new ExpandoObjectConverter()));
+            }
+            if(selectedValues.Count().Equals(1) && selectedValues[0].Equals("*"))
+            {
+                foreach (var exp in selectedObjects)
+                {
+                    dynamic expado = new ExpandoObject();
+
+                    foreach (KeyValuePair<string, object> kvp in exp)
+                    {
+                            AddProperty(expado, kvp.Key, kvp.Value);
+                    }
+                    selected.Add(expado);
+                }
+            }
+            else
+            {
+            foreach (var exp in selectedObjects)
+            {
+            dynamic expado = new ExpandoObject();
+
+                foreach (KeyValuePair<string, object> kvp in exp)
+                {
+                    if (selectedValues.Contains(kvp.Key))
+                    {
+                        AddProperty(expado, kvp.Key, kvp.Value);
+                    }
+                }
+                selected.Add(expado);
+            }
+            }
+
+
+
+
+
+            return new Table();
+        }
+
+        public Table DeleteTable(int tableIndexSelect)
+        {
+            if(tableIndexSelect >= 0)
+            {
+                records.RemoveAt(tableIndexSelect);
+            }
+
+            return new Table();
         }
 
         public Table manageTable()
@@ -180,6 +275,13 @@ namespace ReactASPCrud.Services
                     {
                         return new Table();
                     }
+
+                case "SELECT":
+                        return SelectColumns(getTableIndexSelect());
+
+                case "DELETE":
+                    return DeleteTable(getTableIndexSelect());
+
 
                 default:
                     Console.WriteLine("Other");

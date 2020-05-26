@@ -30,9 +30,16 @@ namespace ReactASPCrud.Controllers
 
         //GET api/records/data/myTable
         [HttpGet("data/{name}")]
-        public async Task<IActionResult> Get(string name)
+        public async Task<IActionResult> GetTable(string name)
         {
             return Ok(recordService.GetByTableName(name));
+        }
+
+        //GET api/records/select
+        [HttpGet("select")]
+        public IEnumerable<ExpandoObject> GetSelectedApi()
+        {
+            return recordService.GetSelected();
         }
 
         // POST api/records

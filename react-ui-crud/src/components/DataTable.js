@@ -6,36 +6,94 @@ class DataTable extends Component {
 
   render() {
     const items = this.props.items;
+    const allItems = this.props.allItems;
 
     return <div>
-    {items.map(item => (
       <div>
-      <h1>{item.name}</h1>
-      <Table striped>
-        <thead className="thead-dark">
-          {item.deserialisedRecords.slice(0,1).map(srec => (
-            <tr>
-            {Object.keys(srec).map(function(key)
-              { return <th>{key}</th>;})} 
-            </tr>
+        {!allItems || allItems.length <= 0 ?
+            <p>There is no tabels</p>
+            : <div>
+              <td>Tables:</td>
+              {
+                allItems.map(allitem =>(
+
+                    <td>
+                      <p>&nbsp;&nbsp;{allitem.name}</p>
+
+                    </td>
+                ))}
+            </div>
+        }
+      </div>
+      <div>{!items || items.length <= 0 ?
+          <p></p>
+          :<Table striped>
+            <thead className="thead-dark">
+
+            {items.slice(0,1).map(item => (
+
+
+                <tr>
+                  {Object.keys(item).map(function(key)
+                  { return <th>{key}</th>;})}
+                </tr>
             ))}
-        </thead>
-        <tbody>
-          {item.deserialisedRecords.map(srec => (
-            <tr>
-              {Object.keys(srec).map(function(key)
-                { return <td>{srec[key]}</td>;})} 
-            </tr>
-          ))}
-        </tbody> 
-     </Table>
-     </div>
-    ))}
+            </thead>
+            <tbody>
+            {items.map(item => (
+                <tr>
+                  {Object.keys(item).map(function(key)
+                  { return <td>{item[key]}</td>;})}
+                </tr>
+            ))}
+            </tbody>
+          </Table>}
+      </div>
     </div>
   }
 }
 
 export default DataTable;
+
+
+//WORKING RENDER all tables!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+// class DataTable extends Component {
+
+//   render() {
+//     const items = this.props.items;
+
+//     return <div>
+//     {items.map(item => (
+//       <div>
+//       <h1>{item.name}</h1>
+//       <Table striped>
+//         <thead className="thead-dark">
+//           {item.deserialisedRecords.slice(0,1).map(srec => (
+//             <tr>
+//             {Object.keys(srec).map(function(key)
+//               { return <th>{key}</th>;})}
+//             </tr>
+//             ))}
+//         </thead>
+//         <tbody>
+//           {item.deserialisedRecords.map(srec => (
+//             <tr>
+//               {Object.keys(srec).map(function(key)
+//                 { return <td>{srec[key]}</td>;})}
+//             </tr>
+//           ))}
+//         </tbody>
+//      </Table>
+//      </div>
+//     ))}
+//     </div>
+//   }
+// }
+
+//WORKING RENDER all tables!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 
 // render() {
@@ -55,39 +113,39 @@ export default DataTable;
 //              })} */}
 //             </p>
 //               ))
-         
+
 //         }
 //       </tr>
 //       </div>
 //   )
 // }
-  // deleteItem = id => {
-  //   let confirmDeletion = window.confirm('Do you really wish to delete it?');
-  //   if (confirmDeletion) {
-  //     fetch(`${API_URL}/${id}`, {
-  //       method: 'delete',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       }
-  //     })
-  //       .then(res => {
-  //         this.props.deleteItemFromState(id);
-  //       })
-  //       .catch(err => console.log(err));
-  //   }
-  // }
+// deleteItem = id => {
+//   let confirmDeletion = window.confirm('Do you really wish to delete it?');
+//   if (confirmDeletion) {
+//     fetch(`${API_URL}/${id}`, {
+//       method: 'delete',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     })
+//       .then(res => {
+//         this.props.deleteItemFromState(id);
+//       })
+//       .catch(err => console.log(err));
+//   }
+// }
 
 
 // EZEGESZENJOVOLT
-  // render() {
-  //   const items = this.props.items;
-  //   return <div>
-  // <h2>valami {items.length}</h2>
-  //   {items.map(item => (
-  //    <p> {item.name}</p>
-  //   ))}
-  //   </div>
-  // }
+// render() {
+//   const items = this.props.items;
+//   return <div>
+// <h2>valami {items.length}</h2>
+//   {items.map(item => (
+//    <p> {item.name}</p>
+//   ))}
+//   </div>
+// }
 //     const items = this.props.items;
 //     return <Table striped>
 //       {/* <thead className="thead-dark">
@@ -108,7 +166,7 @@ export default DataTable;
 //           })
 //           // : items.map(item => (
 //           //   <tr>
-        
+
 //           //     <td>
 //           //       {item.age}
 //           //     </td>
