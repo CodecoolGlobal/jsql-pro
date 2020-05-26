@@ -11,7 +11,7 @@ public class CreateTest extends Initialization {
     @CsvFileSource(resources = "create.csv", numLinesToSkip = 1)
     public void createATable(String createTextInput, String errorMessage) {
         homePage.fillTheTextInputToCreate(createTextInput);
-        homePage.deleteATable();
         Assertions.assertTrue(homePage.checkTableTitleIsDisplayed(), errorMessage);
+        homePage.deleteATable();
     }
 }

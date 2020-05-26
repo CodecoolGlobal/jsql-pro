@@ -6,4 +6,4 @@ CREATE TABLE myTable (name, string nickname, int32 age, int32 weight);, There is
 CREATE TABLE myTable (string name, string nickname, int32 age, int32);, There isn't weight after int32.
 CREATE TABLE myTable (string name, string int32 age, int32 weight);, There are string and int32 as well before age.
 CREATE TABLE myTable (b name, s nickname, i age, i weight);, Invalid format before columns.
-SELECT TABLE myTable(string name, string nickname, int32 age, int32 weight);, Write CREATE instead of SELECT.
+SELECT TABLE myTable (string name, string nickname, int32 age, int32 weight);, Write CREATE instead of SELECT.

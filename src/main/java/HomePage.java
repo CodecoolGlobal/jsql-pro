@@ -12,7 +12,7 @@ public class HomePage extends BasePage {
     private WebDriverWait wait;
     @FindBy(xpath = "//input[@name='name']")
     private WebElement textInput;
-    @FindBy(xpath = "//*[text()='Tables']")
+    @FindBy(xpath = "//*[text()='myTable']")
     private WebElement checkTableTitle;
     @FindBy(xpath = "//*[text()='József']")
     private WebElement checkTableRecord;
