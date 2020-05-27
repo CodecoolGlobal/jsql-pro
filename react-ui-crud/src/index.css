@@ -67,7 +67,7 @@ table tbody tr.active-row {
 }
 
 .form__field {
-    font-family: inherit;
+    font-family: helvetica, sans-serif;
     width: 100%;
     border: 0;
     border-bottom: 2px solid #9b9b9b;
@@ -100,7 +100,7 @@ table tbody tr.active-row {
 
 .form__field:focus {
     padding-bottom: 6px;
-    font-weight: 700;
+    font-weight: 500;
     border-width: 3px;
     border-image: linear-gradient(to right, #11998e, #38ef7d);
     border-image-slice: 1;
