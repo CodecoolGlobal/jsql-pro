@@ -11,7 +11,7 @@ render() {
   return <div>
   <div>
     {!allItems || allItems.length <= 0 ?
-    <p>There is no tabels</p>
+    <p>There are no tabels</p>
     : <div>
       <td>Tables:</td>
       {
@@ -27,13 +27,13 @@ render() {
   </div>
   <div>{!items || items.length <= 0 ?
     <p></p>
-  :<Table striped>
+  :<table striped>
       <thead className="thead-dark">
 
   {items.slice(0,1).map(item => (
 
 
-          <tr>
+          <tr class="active-row">
           {Object.keys(item).map(function(key)
             { return <th>{key}</th>;})}
           </tr>
@@ -47,7 +47,7 @@ render() {
           </tr>
         ))}
       </tbody>
-   </Table>}
+   </table>}
    </div>
    </div>
 }
