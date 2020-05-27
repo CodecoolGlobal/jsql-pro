@@ -11,4 +11,13 @@ public class DeleteTest extends Initialization{
         Assertions.assertFalse(homePage.checkTableTitleIsNotDisplayed());
         homePage.fillTheTextInputToDelete();
     }
+
+    @Test
+    public void checkTableAfterDelete(){
+        homePage.createATable();
+        homePage.insertInto();
+        homePage.selectATable();
+        homePage.deleteATable();
+        Assertions.assertFalse(homePage.checkTableRecord(), "It's already deleted.");
+    }
 }
