@@ -2,3 +2,4 @@ selectTextInput, errorMessage
 SELECT * FROM myTable;! It should be good.
 SELECT * SELECT;! Invalid format after *.
 INSERT * FROM myTable;! Should write SELECT instead of INSERT.
+Select * from myTable;! Case Sensitive.
