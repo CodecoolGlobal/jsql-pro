@@ -7,7 +7,8 @@ public class DeleteTest extends Initialization{
 
     @Test
     public void deleteATable(){
-        homePage.fillTheTextInputToDelete();
+        homePage.fillTheTextInputToCreateValid();
         Assertions.assertFalse(homePage.checkTableTitleIsNotDisplayed());
+        homePage.fillTheTextInputToDelete();
     }
 }

@@ -1,4 +1,5 @@
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +15,7 @@ public class HomePage extends BasePage {
     private WebElement textInput;
     @FindBy(xpath = "//*[text()='myTable']")
     private WebElement checkTableTitle;
-    @FindBy(xpath = "//*[text()='József']")
+    @FindBy(xpath = "//*[text()='60']")
     private WebElement checkTableRecord;
     private WebElement checkTask;
     private WebElement solutionButton;
@@ -25,6 +26,18 @@ public class HomePage extends BasePage {
         this.driver = getDriver();
         this.wait = getWait();
         PageFactory.initElements(driver, this);
+    }
+
+    public void selectATable() {
+        textInput.sendKeys("SELECT * FROM myTable;");
+        textInput.sendKeys(Keys.ENTER);
+        textInput.clear();
+    }
+
+    public void insertInto() {
+        textInput.sendKeys("INSERT INTO myTable (Jozsef, Jozsi, 60, 92);");
+        textInput.sendKeys(Keys.ENTER);
+        textInput.clear();
     }
 
     public void fillTheTextInputToCreateValid() {
@@ -46,6 +59,7 @@ public class HomePage extends BasePage {
     }
 
     public void fillTheTextInputToDelete() {
+        wait.until(ExpectedConditions.visibilityOf(checkTableTitle));
         textInput.sendKeys("DELETE myTable;");
         textInput.sendKeys(Keys.ENTER);
     }
@@ -56,8 +70,12 @@ public class HomePage extends BasePage {
     }
 
     public boolean checkTableTitleIsDisplayed() {
-        wait.until(ExpectedConditions.visibilityOf(checkTableTitle));
-        return checkTableTitle.isDisplayed();
+        try {
+            wait.until(ExpectedConditions.visibilityOf(checkTableTitle));
+            return checkTableTitle.isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
     public boolean checkTableTitleIsNotDisplayed() {
@@ -66,15 +84,18 @@ public class HomePage extends BasePage {
     }
 
     public boolean checkTableRecord() {
-        wait.until(ExpectedConditions.elementToBeClickable(checkTableRecord));
-        return checkTableRecord.isDisplayed();
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(checkTableRecord));
+            return checkTableRecord.isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
     public void createATable(){
         if(!checkTableTitleIsDisplayed()) {
             fillTheTextInputToCreateValid();
         } else {
-            checkTableTitleIsDisplayed();
         }
     }
 

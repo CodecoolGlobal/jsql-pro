@@ -9,10 +9,12 @@ public class SelectTest extends Initialization {
     private HomePage homePage = new HomePage();
 
     @ParameterizedTest
-    @CsvFileSource(resources = "select.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "select.csv", numLinesToSkip = 1, delimiter = '!')
     public void selectQuery(String selectText, String errorMessage) {
         homePage.createATable();
+        homePage.insertInto();
         homePage.fillTheTextInputToSelect(selectText);
-        Assertions.assertTrue(homePage.checkTableTitleIsDisplayed(), errorMessage);
+        Assertions.assertTrue(homePage.checkTableRecord(), errorMessage);
+        homePage.deleteATable();
     }
 }
