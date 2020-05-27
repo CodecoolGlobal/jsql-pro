@@ -7,10 +7,7 @@ namespace ReactASPCrud.Services
     {
 
         private int tableIndexSelect;
-        public DeleteHandler()
-        {
-        }
-
+        public DeleteHandler(){}
 
         public override void Process()
         {

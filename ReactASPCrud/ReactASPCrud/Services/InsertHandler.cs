@@ -12,10 +12,7 @@ namespace ReactASPCrud.Services
 
         private int tableIndex;
 
-        public InsertHandler()
-        {
-
-        }
+        public InsertHandler(){}
 
         public override void Process()
         {

@@ -12,9 +12,7 @@ namespace ReactASPCrud.Services
     {
         private int tableIndexSelect;
 
-        public SelectHandler()
-        {
-        }
+        public SelectHandler(){}
 
         public override void Process()
         {

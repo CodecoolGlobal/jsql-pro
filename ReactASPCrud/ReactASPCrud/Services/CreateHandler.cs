@@ -5,9 +5,8 @@ namespace ReactASPCrud.Services
 {
     public class CreateHandler : BaseHandler
     {
-        public CreateHandler()
-        {
-        }
+        public CreateHandler(){}
+
         public override void Process()
         {
             if (RecordService.input.Contains("CREATE") && RecordService.input.IndexOf("CREATE").Equals(0) && !tableExist())
