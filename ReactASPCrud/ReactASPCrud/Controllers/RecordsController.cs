@@ -46,9 +46,11 @@ namespace ReactASPCrud.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Record record)
         {
-            recordService.SplitInputString(record);
+            //recordService.SplitInputString(record);
+            RecordService.input = record.Name;
+            recordService.manageTable();
 
-            return CreatedAtAction("Get", new { id = record.Id }, recordService.manageTable());
+            return CreatedAtAction("Get", "hello");
         }
 
         // PUT api/records/5
