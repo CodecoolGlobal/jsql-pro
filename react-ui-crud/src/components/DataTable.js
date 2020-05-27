@@ -11,7 +11,7 @@ render() {
   return <div>
   <div>
     {!allItems || allItems.length <= 0 ?
-    <p>There are no tabels</p>
+    <p>There are no tabels.</p>
     : <div>
       <td>Tables:</td>
       {
