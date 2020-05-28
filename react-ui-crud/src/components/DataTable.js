@@ -10,9 +10,9 @@ render() {
 
   return <div>
   <div>
-    {!allItems || allItems.length <= 0 ? 
-    <p>There is no tabels</p>
-    : <div>
+    {!allItems || allItems.length <= 0 ?
+    <p>There are no tabels.</p>
+    : <div className='tablenames'>
       <td>Tables:</td>
       {
     allItems.map(allitem =>(
@@ -27,15 +27,15 @@ render() {
   </div>
   <div>{!items || items.length <= 0 ?
     <p></p>
-  :<Table striped>
+  :<table striped>
       <thead className="thead-dark">
 
   {items.slice(0,1).map(item => (
 
-       
-          <tr>
+
+          <tr class="active-row">
           {Object.keys(item).map(function(key)
-            { return <th>{key}</th>;})} 
+            { return <th>{key}</th>;})}
           </tr>
           ))}
       </thead>
@@ -43,11 +43,11 @@ render() {
         {items.map(item => (
           <tr>
             {Object.keys(item).map(function(key)
-              { return <td>{item[key]}</td>;})} 
+              { return <td>{item[key]}</td>;})}
           </tr>
         ))}
-      </tbody> 
-   </Table>}
+      </tbody>
+   </table>}
    </div>
    </div>
 }
@@ -73,7 +73,7 @@ export default DataTable;
 //           {item.deserialisedRecords.slice(0,1).map(srec => (
 //             <tr>
 //             {Object.keys(srec).map(function(key)
-//               { return <th>{key}</th>;})} 
+//               { return <th>{key}</th>;})}
 //             </tr>
 //             ))}
 //         </thead>
@@ -81,10 +81,10 @@ export default DataTable;
 //           {item.deserialisedRecords.map(srec => (
 //             <tr>
 //               {Object.keys(srec).map(function(key)
-//                 { return <td>{srec[key]}</td>;})} 
+//                 { return <td>{srec[key]}</td>;})}
 //             </tr>
 //           ))}
-//         </tbody> 
+//         </tbody>
 //      </Table>
 //      </div>
 //     ))}
@@ -105,7 +105,7 @@ export default DataTable;
 //         {
 //           items.map(item => (
 //             <p>
-//               {item.deserialisedRecords} 
+//               {item.deserialisedRecords}
 //             {/* {Object.keys(item.deserialisedRecords[0]).map(function(key)
 //             { return <div>
 //               Key: {key}, Value: {item.deserialisedRecords[0][key]}
@@ -113,7 +113,7 @@ export default DataTable;
 //              })} */}
 //             </p>
 //               ))
-         
+
 //         }
 //       </tr>
 //       </div>
@@ -166,7 +166,7 @@ export default DataTable;
 //           })
 //           // : items.map(item => (
 //           //   <tr>
-        
+
 //           //     <td>
 //           //       {item.age}
 //           //     </td>

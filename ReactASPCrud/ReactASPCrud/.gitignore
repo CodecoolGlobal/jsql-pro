@@ -101,8 +101,10 @@ _UpgradeReport_Files/
 ###############
 bin/
 obj/
-.vs/
-.vscode/
+...vs/
+vs/
+...vscode/
+vscode/
 TestResults/
 ###################
 # Web publish log #
