@@ -11,9 +11,6 @@ namespace ReactASPCrud.Services
             _nextHandler = null;
         }
 
-
-
-
         public void SetNextHandler(IHandler handler)
         {
             _nextHandler = handler;
