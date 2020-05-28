@@ -37,5 +37,10 @@ namespace ReactASPCrud.Services
                 RecordService.keyWords = values.Remove(values.Length - 1).Split(" ");
             }
         }
+
+        public virtual void ValidateInput()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

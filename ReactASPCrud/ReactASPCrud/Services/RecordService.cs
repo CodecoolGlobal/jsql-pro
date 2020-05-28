@@ -12,6 +12,8 @@ namespace ReactASPCrud.Services
         public static List<ExpandoObject> selected = new List<ExpandoObject>();
         public static string[] inputStringSlices;
         public static string[] keyWords;
+        public static List<string> Messages = new List<string>();
+        public static string[] AccessableInputs = new string[] { "CREATE", "INSERT", "DELETE", "SELECT" };
 
         static RecordService() { }
         public List<Table> GetAll()
@@ -30,17 +32,16 @@ namespace ReactASPCrud.Services
         }
 
         public void manageTable()
-        {
-            CreateHandler createHandler = new CreateHandler();
-            DeleteHandler deleteHandler = new DeleteHandler();
-            InsertHandler insertHandler = new InsertHandler();
-            SelectHandler selectHandler = new SelectHandler();
+        {   
+                CreateHandler createHandler = new CreateHandler();
+                DeleteHandler deleteHandler = new DeleteHandler();
+                InsertHandler insertHandler = new InsertHandler();
+                SelectHandler selectHandler = new SelectHandler();
 
-            createHandler.SetNextHandler(deleteHandler);
-            deleteHandler.SetNextHandler(insertHandler);
-            insertHandler.SetNextHandler(selectHandler);
-            createHandler.Process();
-
+                createHandler.SetNextHandler(deleteHandler);
+                deleteHandler.SetNextHandler(insertHandler);
+                insertHandler.SetNextHandler(selectHandler);
+                createHandler.Process();
         }
     }
 }

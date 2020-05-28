@@ -12,57 +12,61 @@ namespace ReactASPCrud.Services
     {
         private int tableIndexSelect;
 
-        public SelectHandler(){}
+        public SelectHandler() { }
 
         public override void Process()
         {
             SplitInput();
-            if (RecordService.input.Contains("SELECT") && RecordService.input.IndexOf("SELECT").Equals(0) && tableExist())
+            if (RecordService.input.Contains("SELECT"))
             {
-                tableIndexSelect = getTableIndexSelect();
-                RecordService.selected.Clear();
-                Table table = RecordService.records[tableIndexSelect];
-                List<string> selectedValues = new List<string>();
-                List<ExpandoObject> selectedObjects = new List<ExpandoObject>();
+                ValidateInput();
+                if (RecordService.input.IndexOf("SELECT").Equals(0) && tableExist())
+                {
+                    tableIndexSelect = getTableIndexSelect();
+                    RecordService.selected.Clear();
+                    Table table = RecordService.records[tableIndexSelect];
+                    List<string> selectedValues = new List<string>();
+                    List<ExpandoObject> selectedObjects = new List<ExpandoObject>();
 
-                for (int i = 1; i < RecordService.keyWords.Length - 2; i++)
-                {
-                    selectedValues.Add(RecordService.keyWords[i]);
-                }
-
-                foreach (var record in table.serialisedRecords)
-                {
-                    selectedObjects.Add(JsonConvert.DeserializeObject<ExpandoObject>(record, new ExpandoObjectConverter()));
-                }
-                if (selectedValues.Count().Equals(1) && selectedValues[0].Equals("*"))
-                {
-                    foreach (var exp in selectedObjects)
+                    for (int i = 1; i < RecordService.keyWords.Length - 2; i++)
                     {
-                        dynamic expado = new ExpandoObject();
-
-                        foreach (KeyValuePair<string, object> kvp in exp)
-                        {
-                            Util.AddProperty(expado, kvp.Key, kvp.Value);
-                        }
-                        RecordService.selected.Add(expado);
+                        selectedValues.Add(RecordService.keyWords[i]);
                     }
-                }
-                else
-                {
-                    foreach (var exp in selectedObjects)
-                    {
-                        dynamic expado = new ExpandoObject();
 
-                        foreach (KeyValuePair<string, object> kvp in exp)
+                    foreach (var record in table.serialisedRecords)
+                    {
+                        selectedObjects.Add(JsonConvert.DeserializeObject<ExpandoObject>(record, new ExpandoObjectConverter()));
+                    }
+                    if (selectedValues.Count().Equals(1) && selectedValues[0].Equals("*"))
+                    {
+                        foreach (var exp in selectedObjects)
                         {
-                            if (selectedValues.Contains(kvp.Key))
+                            dynamic expado = new ExpandoObject();
+
+                            foreach (KeyValuePair<string, object> kvp in exp)
                             {
                                 Util.AddProperty(expado, kvp.Key, kvp.Value);
                             }
+                            RecordService.selected.Add(expado);
                         }
-                        RecordService.selected.Add(expado);
                     }
+                    else
+                    {
+                        foreach (var exp in selectedObjects)
+                        {
+                            dynamic expado = new ExpandoObject();
 
+                            foreach (KeyValuePair<string, object> kvp in exp)
+                            {
+                                if (selectedValues.Contains(kvp.Key))
+                                {
+                                    Util.AddProperty(expado, kvp.Key, kvp.Value);
+                                }
+                            }
+                            RecordService.selected.Add(expado);
+                        }
+
+                    }
                 }
             }
             else
@@ -107,6 +111,47 @@ namespace ReactASPCrud.Services
                 }
             }
             return tableInx;
+        }
+
+        public override void ValidateInput()
+        {
+            RecordService.Messages.Clear();
+            StatementNameIsInInput();
+            if (!RecordService.input.Contains(";"))
+            {
+                RecordService.Messages.Add("you are missing the ; symbol");
+            }
+            if (tableExist())
+            {
+                RecordService.Messages.Add("Table Exist");
+            }
+            if (!RecordService.input.IndexOf("SELECT").Equals(0))
+            {
+                RecordService.Messages.Add("Statement is in Wrong Place Start your input with it!");
+            }
+            if (RecordService.keyWords.Length > 4 && RecordService.keyWords.Contains("*"))
+            {
+                RecordService.Messages.Add("you are not able to use * and other column name in the same time");
+            }
+            if (RecordService.keyWords.Length < 4)
+            {
+                RecordService.Messages.Add("you are missing something");
+            }
+        }
+
+        public void StatementNameIsInInput()
+        {
+            foreach (var inp in RecordService.AccessableInputs)
+            {
+                if (RecordService.input.Contains(inp))
+                {
+                    RecordService.Messages.Add("State is correct");
+                }
+                else
+                {
+                    RecordService.Messages.Add("Your input is missing a state or it is in incorrect form. Use Uppercase Letters!");
+                }
+            }
         }
     }
 

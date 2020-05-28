@@ -12,26 +12,34 @@ namespace ReactASPCrud.Services
 
         private int tableIndex;
 
-        public InsertHandler(){}
+        public InsertHandler() { }
 
         public override void Process()
         {
             SplitInput();
-            if (RecordService.input.Contains("INSERT") && RecordService.input.IndexOf("INSERT").Equals(0) && tableExist())
+            if (RecordService.input.Contains("INSERT"))
             {
-                tableIndex = getTableIndex();
-                Table table = RecordService.records[tableIndex];
-                dynamic expado = new ExpandoObject();
-                int sliceCount = 0;
-                foreach (var value in table.columns.Keys)
+                ValidateInput();
+                if (RecordService.input.IndexOf("INSERT").Equals(0) && tableExist())
                 {
-                    Util.AddProperty(expado, value, convertToType(table.columns[value], RecordService.inputStringSlices[sliceCount]));
-                    sliceCount++;
-                }
-                //serialise
-                string strCust = JsonConvert.SerializeObject(expado, new ExpandoObjectConverter());
-                table.addRecord(strCust, expado);
+                    tableIndex = getTableIndex();
+                    Table table = RecordService.records[tableIndex];
+                    if (RecordService.keyWords.Length > table.columns.Keys.Count || RecordService.keyWords.Length < table.columns.Keys.Count)
+                    {
+                        RecordService.Messages.Add("the entered velue number is incorrect");
+                    }
+                    dynamic expado = new ExpandoObject();
+                    int sliceCount = 0;
+                    foreach (var value in table.columns.Keys)
+                    {
+                        Util.AddProperty(expado, value, convertToType(table.columns[value], RecordService.inputStringSlices[sliceCount]));
+                        sliceCount++;
+                    }
+                    //serialise
+                    string strCust = JsonConvert.SerializeObject(expado, new ExpandoObjectConverter());
+                    table.addRecord(strCust, expado);
 
+                }
             }
             else
             {
@@ -75,7 +83,7 @@ namespace ReactASPCrud.Services
                     }
                     else
                     {
-                        Console.WriteLine("String could not be parsed.");
+                        RecordService.Messages.Add("String could not be parsed.");
                         return null;
                     }
                 case "int64":
@@ -85,7 +93,7 @@ namespace ReactASPCrud.Services
                     }
                     else
                     {
-                        Console.WriteLine("String could not be parsed.");
+                        RecordService.Messages.Add("String could not be parsed.");
                         return null;
                     }
                 case "bool":
@@ -95,7 +103,7 @@ namespace ReactASPCrud.Services
                     }
                     else
                     {
-                        Console.WriteLine("String could not be parsed.");
+                        RecordService.Messages.Add("String could not be parsed.");
                         return null;
                     }
                 default:
@@ -119,6 +127,43 @@ namespace ReactASPCrud.Services
                 }
             }
             return tableInx;
+        }
+
+        public override void ValidateInput()
+        {
+            RecordService.Messages.Clear();
+            StatementNameIsInInput();
+            if (!RecordService.input.Contains(";"))
+            {
+                RecordService.Messages.Add("you are missing the ; symbol");
+            }
+            if (tableExist())
+            {
+                RecordService.Messages.Add("Table Exist");
+            }
+            if (!RecordService.input.IndexOf("INSERT").Equals(0))
+            {
+                RecordService.Messages.Add("Statement is in Wrong Place Start your input with it!");
+            }
+            if (RecordService.keyWords.Length < 1)
+            {
+                RecordService.Messages.Add("You are missing values");
+            }
+        }
+
+        public void StatementNameIsInInput()
+        {
+            foreach (var inp in RecordService.AccessableInputs)
+            {
+                if (RecordService.input.Contains(inp))
+                {
+                    RecordService.Messages.Add("State is correct");
+                }
+                else
+                {
+                    RecordService.Messages.Add("Your input is missing a state or it is in incorrect form. Use Uppercase Letters!");
+                }
+            }
         }
     }
 }

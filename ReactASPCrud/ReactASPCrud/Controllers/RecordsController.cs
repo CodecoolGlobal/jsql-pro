@@ -48,9 +48,10 @@ namespace ReactASPCrud.Controllers
         {
             //recordService.SplitInputString(record);
             RecordService.input = record.Name;
+            RecordService.Messages.Clear();
             recordService.manageTable();
 
-            return CreatedAtAction("Get", "hello");
+            return CreatedAtAction("Get", RecordService.Messages);
         }
 
         // PUT api/records/5
