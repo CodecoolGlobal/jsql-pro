@@ -1,5 +1,14 @@
 selectTextInput, errorMessage
 SELECT * FROM myTable;! It should be good.
+SELECT age FROM myTable;! It should be good.
 SELECT * SELECT;! Invalid format after *.
 INSERT * FROM myTable;! Should write SELECT instead of INSERT.
+Select * From myTable;! Case Sensitive.
+select * from myTable;! Case Sensitive.
+select * FROM myTable;! Case Sensitive.
 Select * from myTable;! Case Sensitive.
+select * From myTable;! Case Sensitive.
+SELECT * from myTable;! Case Sensitive.
+SELECT FROM myTable;! Specify the fields.
+SELECT * myTable;! Missing from.
+SELECT * FROM nonExistingTable;! Non existing table.

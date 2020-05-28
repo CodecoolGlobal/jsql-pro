@@ -8,3 +8,8 @@ CREATE TABLE myTable (string name, string int32 age, int32 weight);! There are s
 CREATE TABLE myTable (b name, s nickname, i age, i weight);! Invalid format before columns.
 SELECT TABLE myTable (string name, string nickname, int32 age, int32 weight);! Write CREATE instead of SELECT.
 Create Table myTable (string name, string nickname, int32 age, int32 weight);! Case sensitive.
+CREATE Table myTable (string name, string nickname, int32 age, int32 weight);! Case sensitive.
+Create TABLE myTable (string name, string nickname, int32 age, int32 weight);! Case sensitive.
+create table myTable (string name, string nickname, int32 age, int32 weight);! Case sensitive.
+CREATE TABLE (string name, string nickname, int32 age, int32 weight);! Specify a table name.
+CREATE TABLE myTable string name, string nickname, int32 age, int32 weight;! Should contain "()".
