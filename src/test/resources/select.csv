@@ -9,6 +9,8 @@ select * FROM myTable;! Case Sensitive.
 Select * from myTable;! Case Sensitive.
 select * From myTable;! Case Sensitive.
 SELECT * from myTable;! Case Sensitive.
+SELECT * From myTable;! Case Sensitive.
+SELECT * fRoM myTable;! Case Sensitive.
 SELECT FROM myTable;! Specify the fields.
 SELECT * myTable;! Missing from.
 SELECT * FROM nonExistingTable;! Non existing table.
