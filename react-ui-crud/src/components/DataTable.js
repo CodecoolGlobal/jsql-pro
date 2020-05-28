@@ -12,7 +12,7 @@ render() {
   <div>
     {!allItems || allItems.length <= 0 ?
     <p>There are no tabels.</p>
-    : <div>
+    : <div class="center">
       <td>Tables:</td>
       {
     allItems.map(allitem =>(
