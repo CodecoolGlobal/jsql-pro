@@ -103,7 +103,8 @@ bin/
 obj/
 ..vs/
 vs/
-.vscode/
+..vscode/
+vscode/
 TestResults/
 ###################
 # Web publish log #

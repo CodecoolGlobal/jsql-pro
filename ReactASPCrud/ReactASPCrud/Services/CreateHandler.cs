@@ -9,9 +9,9 @@ namespace ReactASPCrud.Services
 
         public override void Process()
         {
+            SplitInput();
             if (RecordService.input.Contains("CREATE") && RecordService.input.IndexOf("CREATE").Equals(0) && !tableExist())
             {
-                SplitInput();
                 Table table = new Table();
                 table.Name = RecordService.keyWords[2];
                 for (int i = 0; i < RecordService.inputStringSlices.Length - 1; i += 2)

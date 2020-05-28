@@ -16,9 +16,9 @@ namespace ReactASPCrud.Services
 
         public override void Process()
         {
+            SplitInput();
             if (RecordService.input.Contains("SELECT") && RecordService.input.IndexOf("SELECT").Equals(0) && tableExist())
             {
-                SplitInput();
                 tableIndexSelect = getTableIndexSelect();
                 RecordService.selected.Clear();
                 Table table = RecordService.records[tableIndexSelect];
@@ -80,7 +80,7 @@ namespace ReactASPCrud.Services
             bool tableExist = false;
             foreach (Table table in RecordService.records)
             {
-                if (table.Name.Equals(RecordService.keyWords[2]))
+                if (table.Name.Equals(RecordService.keyWords[RecordService.keyWords.Length - 1]))
                 {
                     tableExist = true;
                 }

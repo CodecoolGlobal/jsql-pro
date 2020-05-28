@@ -16,10 +16,10 @@ namespace ReactASPCrud.Services
 
         public override void Process()
         {
+            SplitInput();
             if (RecordService.input.Contains("INSERT") && RecordService.input.IndexOf("INSERT").Equals(0) && tableExist())
             {
                 tableIndex = getTableIndex();
-                SplitInput();
                 Table table = RecordService.records[tableIndex];
                 dynamic expado = new ExpandoObject();
                 int sliceCount = 0;

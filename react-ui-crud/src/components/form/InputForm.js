@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import {Button, Form, FormGroup, Input, Label} from 'reactstrap';
 
-import { API_URL } from '../../constants';
+import {API_URL} from '../../constants';
 
 class InputForm extends React.Component {
 
@@ -10,10 +10,10 @@ class InputForm extends React.Component {
     }
 
     onChange = e => {
-        this.setState({ [e.target.name]: e.target.value })
+        this.setState({[e.target.name]: e.target.value})
     }
 
-    submitNew = e =>{
+    submitNew = e => {
 
         fetch(`${API_URL}`, {
             method: 'post',
@@ -24,14 +24,18 @@ class InputForm extends React.Component {
                 name: this.state.name
             })
         })
-        
+
     }
 
     render() {
         return <Form onSubmit={this.submitNew}>
             <FormGroup>
-                <Label for="name">SQL goes here:</Label>
-                <Input type="text" name="name" onChange={this.onChange} value={this.state.name === '' ? '' : this.state.name} />
+                <div class="form__group field">
+                    <input type="input" class="form__field" placeholder="SQL goes here" name="name" id='name' required
+                           onChange={this.onChange} value={this.state.name === '' ? '' : this.state.name}/>
+                    <label for="name" class="form__label">SQL goes here:</label>
+                    <p>Please append a semicolon ";" at the end of the query to avoid error.</p>
+                </div>
             </FormGroup>
         </Form>;
     }

@@ -11,9 +11,9 @@ namespace ReactASPCrud.Services
 
         public override void Process()
         {
+            SplitInput();
             if (RecordService.input.Contains("DELETE") && RecordService.input.IndexOf("DELETE").Equals(0) && tableExist())
             {
-                SplitInput();
                 tableIndexSelect = getTableIndexSelect();
                 if (tableIndexSelect >= 0)
                 {
