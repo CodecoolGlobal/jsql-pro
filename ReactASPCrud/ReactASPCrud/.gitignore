@@ -101,9 +101,9 @@ _UpgradeReport_Files/
 ###############
 bin/
 obj/
-..vs/
+...vs/
 vs/
-..vscode/
+...vscode/
 vscode/
 TestResults/
 ###################
