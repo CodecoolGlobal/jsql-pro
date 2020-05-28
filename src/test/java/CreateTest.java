@@ -7,7 +7,7 @@ public class CreateTest extends Initialization {
     private HomePage homePage = new HomePage();
 
     @ParameterizedTest
-    @CsvFileSource(resources = "Create.csv", numLinesToSkip = 1, delimiter = '!')
+    @CsvFileSource(resources = "create.csv", numLinesToSkip = 1, delimiter = '!')
     public void createATable(String createTextInput, String errorMessage) {
         homePage.fillTheTextInputToCreate(createTextInput);
         Assertions.assertTrue(homePage.checkTableTitleIsDisplayed(), errorMessage);
