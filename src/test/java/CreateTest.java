@@ -7,10 +7,17 @@ public class CreateTest extends Initialization {
     private HomePage homePage = new HomePage();
 
     @ParameterizedTest
-    @CsvFileSource(resources = "create.csv", numLinesToSkip = 1, delimiter = '!')
+    @CsvFileSource(resources = "createValid.csv", numLinesToSkip = 1, delimiter = '!')
     public void createATable(String createTextInput, String errorMessage) {
         homePage.fillTheTextInputToCreate(createTextInput);
         Assertions.assertTrue(homePage.checkTableTitleIsDisplayed(), errorMessage);
-        homePage.deleteATable();
+        homePage.fillTheTextInputToDelete();
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "createInvalid.csv", numLinesToSkip = 1, delimiter = '!')
+    public void createAnInvalidTable(String createTextInput, String errorMessage) {
+        homePage.fillTheTextInputToCreate(createTextInput);
+        Assertions.assertTrue(homePage.checkTableTitleIsNotDisplayed(), errorMessage);
     }
 }

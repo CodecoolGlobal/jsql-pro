@@ -1,7 +1,4 @@
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -59,9 +56,13 @@ public class HomePage extends BasePage {
     }
 
     public void fillTheTextInputToDelete() {
-        wait.until(ExpectedConditions.visibilityOf(checkTableTitle));
-        textInput.sendKeys("DELETE myTable;");
-        textInput.sendKeys(Keys.ENTER);
+        try {
+            wait.until(ExpectedConditions.visibilityOf(checkTableTitle));
+            textInput.sendKeys("DELETE myTable;");
+            textInput.sendKeys(Keys.ENTER);
+        } catch (TimeoutException | NoSuchElementException e) {
+
+        }
     }
 
     public void fillTheTextInputToSelect(String selectText) {
@@ -73,14 +74,20 @@ public class HomePage extends BasePage {
         try {
             wait.until(ExpectedConditions.visibilityOf(checkTableTitle));
             return checkTableTitle.isDisplayed();
-        } catch (TimeoutException e) {
+        } catch (TimeoutException | NoSuchElementException e) {
             return false;
         }
     }
 
     public boolean checkTableTitleIsNotDisplayed() {
-        wait.until(ExpectedConditions.visibilityOf(checkTableTitle));
-        return !checkTableTitle.isDisplayed();
+        try {
+            wait.until(ExpectedConditions.visibilityOf(checkTableTitle));
+            return !checkTableTitle.isDisplayed();
+        } catch (TimeoutException e) {
+            return true;
+        } finally {
+            fillTheTextInputToDelete();
+        }
     }
 
     public boolean checkTableRecord() {
@@ -92,15 +99,10 @@ public class HomePage extends BasePage {
         }
     }
 
-    public void createATable(){
-        if(!checkTableTitleIsDisplayed()) {
+    public void createATable() {
+        if (!checkTableTitleIsDisplayed()) {
             fillTheTextInputToCreateValid();
-        } else {
         }
-    }
-
-    public void deleteATable(){
-        fillTheTextInputToDelete();
     }
 
     public boolean checkTask() {

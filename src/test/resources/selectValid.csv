@@ -1,0 +1,6 @@
+selectTextInput, errorMessage
+SELECT * FROM myTable;! It should be good.
+SELECT age FROM myTable;! It should be good.
+SELECT * from myTable;! Case Sensitive.
+SELECT * From myTable;! Case Sensitive.
+SELECT * fRoM myTable;! Case Sensitive.

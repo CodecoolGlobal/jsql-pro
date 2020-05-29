@@ -1,0 +1,7 @@
+insertIntoTextInput, errorMessage
+INSERT INTO myTable (Jozsef, Jozsi, 60, 92);! It should be good.
+INSERT INTO myTable (Becstelen Jozsef, 2009, 60, war);! It should be good.
+INSERT INTO myTable (Jozsef, Jozsi, 60, 92);! It should be good.
+INSERT Into myTable (Jozsef, Jozsi, 60, 92);! Case sensitive.
+INSERT into myTable (Jozsef, Jozsi, 60, 92);! Case sensitive.
+INSERT iNtO myTable (Jozsef, Jozsi, 60, 92);! Case sensitive.

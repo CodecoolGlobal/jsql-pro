@@ -17,7 +17,7 @@ public class DeleteTest extends Initialization {
         homePage.createATable();
         homePage.insertInto();
         homePage.selectATable();
-        homePage.deleteATable();
-        Assertions.assertFalse(homePage.checkTableRecord(), "It's already deleted.");
+        homePage.fillTheTextInputToDelete();
+        Assertions.assertTrue(homePage.checkTableRecord(), "It's already deleted.");
     }
 }

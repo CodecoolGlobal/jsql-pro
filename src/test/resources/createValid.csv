@@ -1,0 +1,6 @@
+createTextInput, errorMessage
+CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight);! It should be good.
+CREATE TABLE myTable (string title, int32 release date, int32 runtime, string genre);! It should be good.
+CREATE Table myTable (string name, string nickname, int32 age, int32 weight);! Case sensitive.
+CREATE table myTable (string name, string nickname, int32 age, int32 weight);! Case sensitive.
+CREATE tAbLe myTable (string name, string nickname, int32 age, int32 weight);! Case sensitive.
