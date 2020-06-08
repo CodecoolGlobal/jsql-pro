@@ -40,4 +40,9 @@ public class CreateTest {
     public void iDeleteTheTable() {
         homePage.fillTheTextInputToDelete();
     }
+
+    @Then("^I check the table is not exist$")
+    public void iCheckTheTableIsNotExist() {
+        assertTrue(homePage.checkTableTitleIsNotDisplayed());
+    }
 }

@@ -9,7 +9,7 @@ Feature: Insert a table with invalid format
     And I click the enter
     And I fill the input field "<textFieldSelect>"
     And I click the enter
-    And I check the table record
+    And I check the table record is not exist
     Then I fill the input field "<textFieldDelete>"
 
     Examples:

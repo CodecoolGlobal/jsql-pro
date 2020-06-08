@@ -6,7 +6,7 @@ Feature: Delete a table
     And I fill the input field "<textFieldCreate>"
     And I click the enter
     And I fill the input field "<textFieldDelete>"
-    Then I check the table
+    Then I check the table is not exist
 
     Examples:
       | textFieldCreate                                                               | textFieldDelete |

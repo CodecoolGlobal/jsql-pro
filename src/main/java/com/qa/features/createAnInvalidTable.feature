@@ -5,7 +5,7 @@ Feature: Create invalid table
     When I click on the text input
     And I fill the input field "<textFieldCreate>"
     And I click the enter
-    Then I check the table
+    Then I check the table is not exist
 
     Examples:
       | textFieldCreate                                                               |

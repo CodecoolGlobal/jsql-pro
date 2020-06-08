@@ -1,6 +1,7 @@
 package com.qa.stepDefinitions;
 
 import com.qa.pages.HomePage;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 
 import static org.junit.jupiter.api.Assertions.*;
