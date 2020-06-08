@@ -1,6 +1,4 @@
-# Created by rebak at 2020. 03. 31.
 Feature: Delete a table
-  # Enter feature description here
 
   Scenario Outline: Delete a table
     Given Open the Chrome and start application

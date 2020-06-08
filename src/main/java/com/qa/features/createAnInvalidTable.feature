@@ -1,6 +1,4 @@
-# Created by rebak at 2020. 03. 31.
 Feature: Create invalid table
-  # Enter feature description here
 
   Scenario Outline: Create invalid table
     Given Open the Chrome and start application

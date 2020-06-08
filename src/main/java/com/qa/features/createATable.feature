@@ -1,13 +1,12 @@
-# Created by rebak at 2020. 03. 31.
 Feature: Create a table
-  # Enter feature description here
 
   Scenario Outline: Create a table
     Given Open the Chrome and start application
     When I click on the text input
     And I fill the input field "<textFieldCreate>"
     And I click the enter
-    Then I check the table
+    And I check the table
+    Then I delete the table
 
     Examples:
       | textFieldCreate                                                                       |

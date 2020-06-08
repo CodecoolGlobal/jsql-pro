@@ -1,6 +1,4 @@
-# Created by rebak at 2020. 03. 31.
 Feature: Select invalid table
-  # Enter feature description here
 
   Scenario Outline: Select invalid table
     Given Open the Chrome and start application

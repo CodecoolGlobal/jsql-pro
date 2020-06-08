@@ -1,6 +1,4 @@
-# Created by rebak at 2020. 03. 31.
 Feature: Insert a table with invalid format
-  # Enter feature description here
 
   Scenario Outline: Insert a table with invalid format
     Given Open the Chrome and start application

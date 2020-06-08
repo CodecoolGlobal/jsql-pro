@@ -1,6 +1,4 @@
-# Created by rebak at 2020. 03. 31.
 Feature: Check table after delete
-  # Enter feature description here
 
   Scenario Outline: Check table after delete
     Given Open the Chrome and start application
