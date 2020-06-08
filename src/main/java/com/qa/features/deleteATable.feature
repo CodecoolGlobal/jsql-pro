@@ -1,0 +1,15 @@
+# Created by rebak at 2020. 03. 31.
+Feature: Delete a table
+  # Enter feature description here
+
+  Scenario Outline: Delete a table
+    Given Open the Chrome and start application
+    When I click on the text input
+    And I fill the input field "<textFieldCreate>"
+    And I click the enter
+    And I fill the input field "<textFieldDelete>"
+    Then I check the table
+
+    Examples:
+      | textFieldCreate                                                               | textFieldDelete |
+      | CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight); | DELETE myTable; |

@@ -1,23 +1,21 @@
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+package com.qa.stepDefinitions;
 
-public class DeleteTest extends Initialization {
+
+import com.qa.pages.HomePage;
+
+public class DeleteTest {
 
     private HomePage homePage = new HomePage();
 
-    @Test
     public void deleteATable() {
         homePage.fillTheTextInputToCreateValid();
-        Assertions.assertFalse(homePage.checkTableTitleIsNotDisplayed());
         homePage.fillTheTextInputToDelete();
     }
 
-    @Test
     public void checkTableAfterDelete() {
         homePage.createATable();
         homePage.insertInto();
         homePage.selectATable();
         homePage.fillTheTextInputToDelete();
-        Assertions.assertTrue(homePage.checkTableRecord(), "It's already deleted.");
     }
 }

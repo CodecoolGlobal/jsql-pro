@@ -1,6 +1,9 @@
+package com.qa.pages;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import com.qa.util.WebDriverManager;
 
 public abstract class BasePage {
 
