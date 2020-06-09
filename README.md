@@ -9,3 +9,4 @@ CREATE, SELECT, INSERT, DELETE(worik in progress)
 ##### INSERT INTO myTable (Péter, Peti, 45, 77);
 ##### SELECT name, age FROM myTable;
 ##### DELETE myTable;
+you can find the cain of responsibility pattern in ReactASPCrud/ReactASPCrud/Services/RecordService.cs -> manageTable() method 
