@@ -10,20 +10,20 @@ import java.net.URL;
 
 public class WebDriverManager {
 
-    private static WebDriver driver = new ChromeDriver();
+    private static WebDriver driver = null;
     private static String gridUrl = "http://localhost:4444/wd/hub";
 
 
     private WebDriverManager() {
     }
 
-    public static WebDriver getDriver() {
+    public static WebDriver getDriver1() {
         System.setProperty("webdriver.chrome.driver", "/src/test/resources/chromedriver1");
         driver.manage().window().maximize();
         return driver;
     }
 
-    public static WebDriver getDriver1() {
+    public static WebDriver getDriver() {
         if (driver == null) {
             try {
                 System.setProperty("webdriver.gecko.driver", "/src/test/resources/geckodriver1");
