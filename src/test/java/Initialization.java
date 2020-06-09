@@ -15,10 +15,10 @@ public class Initialization {
         homePage.navigate();
     }
 
-   /* @AfterEach
+    @AfterEach
     public void teardown() {
         WebDriverManager.getDriver().close();
         WebDriverManager.quit();
-    }*/
+    }
 
 }
