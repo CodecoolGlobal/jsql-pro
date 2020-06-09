@@ -4,7 +4,7 @@ import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@Cucumber.Options(features = {"C:/Users/rebak/jsql-pro/src/main/java/com/qa/features/selectValidQuery.feature"},
+@Cucumber.Options(features = {"C:/Users/rebak/jsql-pro/src/main/java/com/qa/features"},
         glue = {"com.qa.stepDefinitions"},
 //, format= {"pretty","html:test-outout"}
         monochrome = true,
