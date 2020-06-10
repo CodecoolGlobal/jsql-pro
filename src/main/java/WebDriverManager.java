@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -31,10 +32,11 @@ public class WebDriverManager {
     public static WebDriver getDriver() {
         if (driver == null) {
             try {
-                ChromeOptions options = new ChromeOptions();
+                System.setProperty("webdriver.gecko.driver", "src\\test\\resources\\geckodriver.exe");
+                FirefoxOptions options = new FirefoxOptions();
                 options.addArguments("--start-maximized");
-                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-                capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+                DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+                capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options);
                 //capabilities.setBrowserName("chrome");
                 //capabilities.setPlatform(Platform.LINUX);
                 driver = new RemoteWebDriver(new URL(gridUrl), options);
