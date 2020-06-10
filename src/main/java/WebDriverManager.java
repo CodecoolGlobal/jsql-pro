@@ -37,7 +37,7 @@ public class WebDriverManager {
                 capabilities.setCapability(ChromeOptions.CAPABILITY, options);
                 //capabilities.setBrowserName("chrome");
                 //capabilities.setPlatform(Platform.LINUX);
-                driver = new RemoteWebDriver(new URL(gridUrl), options);
+                driver = new RemoteWebDriver(new URL(hubUrl), options);
             } catch (MalformedURLException e) {
                 e.fillInStackTrace();
             }
