@@ -13,8 +13,7 @@ namespace ReactASPCrud.Services
             SplitInput();
             if (RecordService.input.Contains("CREATE"))
             {
-                ValidateInput();
-                if (RecordService.input.IndexOf("CREATE").Equals(0) && !tableExist())
+                if (ValidateInput() && RecordService.input.IndexOf("CREATE").Equals(0) && !tableExist())
                 {
                     Table table = new Table();
                     table.Name = RecordService.keyWords[2];
@@ -31,7 +30,7 @@ namespace ReactASPCrud.Services
                 {
                     _nextHandler.Process();
                 }
-                throw new Exception("input is not a Creation");
+                //throw new Exception("input is not a Creation");
             }
         }
 
@@ -53,45 +52,44 @@ namespace ReactASPCrud.Services
         }
 
 
-        public override void ValidateInput()
+        public override bool ValidateInput()
         {
-            RecordService.Messages.Clear();
-            StatementNameIsInInput();
+            bool inputIsValid = true;
+
+
             if (!RecordService.input.Contains(";"))
             {
                 RecordService.Messages.Add("you are missing the ; symbol");
+                inputIsValid = false;
             }
             if (tableExist())
             {
                 RecordService.Messages.Add("Table Exist");
             }
+            if (RecordService.keyWords.Contains("CREATE") && RecordService.keyWords.Contains("TABLE") && RecordService.keyWords.Length < 3)
+            {
+                RecordService.Messages.Add("Table name is missing");
+                inputIsValid = false;
+            }
             if (!RecordService.input.IndexOf("CREATE").Equals(0))
             {
                 RecordService.Messages.Add("Statement is in Wrong Place Start your input with it!");
+                inputIsValid = false;
             }
-            if (RecordService.keyWords.Length < 1)
+            if (!RecordService.inputStringSlices.Equals(null) && RecordService.inputStringSlices.Length < 2)
             {
                 RecordService.Messages.Add("values are missing");
+                inputIsValid = false;
             }
             if (!RecordService.input.Contains("(") || (!RecordService.input.Contains(")")))
             {
                 RecordService.Messages.Add("( or ) is missing");
+                inputIsValid = false;
             }
+
+            return inputIsValid;
         }
 
-        public void StatementNameIsInInput()
-        {
-            foreach (var inp in RecordService.AccessableInputs)
-            {
-                if (RecordService.input.Contains(inp))
-                {
-                    RecordService.Messages.Add("State is correct");
-                }
-                else
-                {
-                    RecordService.Messages.Add("Your input is missing a state or it is in incorrect form. Use Uppercase Letters!");
-                }
-            }
-        }
+
     }
 }

@@ -14,8 +14,7 @@ namespace ReactASPCrud.Services
             SplitInput();
             if (RecordService.input.Contains("DELETE"))
             {
-                ValidateInput();
-                if (RecordService.input.IndexOf("DELETE").Equals(0) && tableExist())
+                if (ValidateInput() && RecordService.input.IndexOf("DELETE").Equals(0) && tableExist())
                 {
                     tableIndexSelect = getTableIndexSelect();
                     if (tableIndexSelect >= 0)
@@ -30,7 +29,7 @@ namespace ReactASPCrud.Services
                 {
                     _nextHandler.Process();
                 }
-                throw new Exception("input is not a Deletion");
+                //throw new Exception("input is not a Deletion");
             }
         }
 
@@ -71,13 +70,14 @@ namespace ReactASPCrud.Services
         }
 
 
-        public override void ValidateInput()
+        public override bool ValidateInput()
         {
-            RecordService.Messages.Clear();
-            StatementNameIsInInput();
+            bool inputIsValid = true;
+
             if (!RecordService.input.Contains(";"))
             {
                 RecordService.Messages.Add("you are missing the ; symbol");
+                inputIsValid = false;
             }
             if (tableExist())
             {
@@ -86,26 +86,15 @@ namespace ReactASPCrud.Services
             if (!RecordService.input.IndexOf("DELETE").Equals(0))
             {
                 RecordService.Messages.Add("Statement is in Wrong Place Start your input with it!");
+                inputIsValid = false;
             }
             if (RecordService.keyWords.Length > 3)
             {
                 RecordService.Messages.Add("You entered to many information");
+                inputIsValid = false;
             }
-        }
 
-        public void StatementNameIsInInput()
-        {
-            foreach (var inp in RecordService.AccessableInputs)
-            {
-                if (RecordService.input.Contains(inp))
-                {
-                    RecordService.Messages.Add("State is correct");
-                }
-                else
-                {
-                    RecordService.Messages.Add("Your input is missing a state or it is in incorrect form. Use Uppercase Letters!");
-                }
-            }
+            return inputIsValid;
         }
     }
 }

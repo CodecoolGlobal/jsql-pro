@@ -5,6 +5,6 @@ namespace ReactASPCrud.Services
         void SetNextHandler(IHandler handler);
         void Process();
         void SplitInput();
-        void ValidateInput();
+        bool ValidateInput();
     }
 }

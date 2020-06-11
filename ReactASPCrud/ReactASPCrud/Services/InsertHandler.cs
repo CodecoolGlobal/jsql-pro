@@ -1,5 +1,6 @@
 using System;
 using System.Dynamic;
+using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -19,15 +20,14 @@ namespace ReactASPCrud.Services
             SplitInput();
             if (RecordService.input.Contains("INSERT"))
             {
-                ValidateInput();
-                if (RecordService.input.IndexOf("INSERT").Equals(0) && tableExist())
+                if (ValidateInput() && RecordService.input.IndexOf("INSERT").Equals(0) && tableExist())
                 {
                     tableIndex = getTableIndex();
                     Table table = RecordService.records[tableIndex];
-                    if (RecordService.keyWords.Length > table.columns.Keys.Count || RecordService.keyWords.Length < table.columns.Keys.Count)
-                    {
-                        RecordService.Messages.Add("the entered velue number is incorrect");
-                    }
+                    //if (RecordService.keyWords.Length > table.columns.Keys.Count || RecordService.keyWords.Length < table.columns.Keys.Count)
+                    //{
+                    //    RecordService.Messages.Add("the entered velue number is incorrect");
+                    //}
                     dynamic expado = new ExpandoObject();
                     int sliceCount = 0;
                     foreach (var value in table.columns.Keys)
@@ -47,7 +47,7 @@ namespace ReactASPCrud.Services
                 {
                     _nextHandler.Process();
                 }
-                throw new Exception("input is not an Insertion");
+                //throw new Exception("input is not an Insertion");
             }
         }
 
@@ -129,13 +129,21 @@ namespace ReactASPCrud.Services
             return tableInx;
         }
 
-        public override void ValidateInput()
+        public override bool ValidateInput()
         {
-            RecordService.Messages.Clear();
-            StatementNameIsInInput();
+            bool inputIsValid = true;
+
+           
+
             if (!RecordService.input.Contains(";"))
             {
                 RecordService.Messages.Add("you are missing the ; symbol");
+                inputIsValid = false;
+            }
+            if (RecordService.keyWords.Contains("INSERT") && RecordService.keyWords.Contains("INTO") && RecordService.keyWords.Length < 3)
+            {
+                RecordService.Messages.Add("Table name is missing");
+                inputIsValid = false;
             }
             if (tableExist())
             {
@@ -144,26 +152,21 @@ namespace ReactASPCrud.Services
             if (!RecordService.input.IndexOf("INSERT").Equals(0))
             {
                 RecordService.Messages.Add("Statement is in Wrong Place Start your input with it!");
+                inputIsValid = false;
             }
-            if (RecordService.keyWords.Length < 1)
+            if (RecordService.inputStringSlices.Length < 2)
             {
                 RecordService.Messages.Add("You are missing values");
+                inputIsValid = false;
             }
+            if (!RecordService.input.Contains("(") || (!RecordService.input.Contains(")")))
+            {
+                RecordService.Messages.Add("( or ) is missing");
+                inputIsValid = false;
+            }
+
+            return inputIsValid;
         }
 
-        public void StatementNameIsInInput()
-        {
-            foreach (var inp in RecordService.AccessableInputs)
-            {
-                if (RecordService.input.Contains(inp))
-                {
-                    RecordService.Messages.Add("State is correct");
-                }
-                else
-                {
-                    RecordService.Messages.Add("Your input is missing a state or it is in incorrect form. Use Uppercase Letters!");
-                }
-            }
-        }
     }
 }

@@ -7,13 +7,13 @@ namespace ReactASPCrud.Services
 {
     public class RecordService
     {
-        public static string input { get; set; }
-        public static List<Table> records = new List<Table>();
-        public static List<ExpandoObject> selected = new List<ExpandoObject>();
-        public static string[] inputStringSlices;
-        public static string[] keyWords;
-        public static List<string> Messages = new List<string>();
-        public static string[] AccessableInputs = new string[] { "CREATE", "INSERT", "DELETE", "SELECT" };
+        internal static string input { get; set; }
+        internal static List<Table> records = new List<Table>();
+        internal static List<ExpandoObject> selected = new List<ExpandoObject>();
+        internal static string[] inputStringSlices;
+        internal static string[] keyWords;
+        internal static List<string> Messages = new List<string>();
+        internal static string[] AccessableInputs = new string[] { "CREATE", "INSERT", "DELETE", "SELECT" };
 
         static RecordService() { }
         public List<Table> GetAll()
@@ -32,7 +32,9 @@ namespace ReactASPCrud.Services
         }
 
         public void manageTable()
-        {   
+        {
+            if (StatementNameIsInInput())
+            {
                 CreateHandler createHandler = new CreateHandler();
                 DeleteHandler deleteHandler = new DeleteHandler();
                 InsertHandler insertHandler = new InsertHandler();
@@ -42,6 +44,28 @@ namespace ReactASPCrud.Services
                 deleteHandler.SetNextHandler(insertHandler);
                 insertHandler.SetNextHandler(selectHandler);
                 createHandler.Process();
+            }
+            else
+            {
+                Messages.Add("The server is not able to process your input!");
+            }
+
+        }
+
+        public bool StatementNameIsInInput()
+        {
+            if (RecordService.input.Contains("CREATE") || RecordService.input.Contains("SELECT") ||
+                RecordService.input.Contains("INSERT") || RecordService.input.Contains("DELETE"))
+            {
+                RecordService.Messages.Add("State is correct");
+                return true;
+            }
+            else
+            {
+                RecordService.Messages.Add("Your input is missing a state or it is in incorrect form. Use Uppercase Letters!");
+                return false;
+            }
+
         }
     }
 }

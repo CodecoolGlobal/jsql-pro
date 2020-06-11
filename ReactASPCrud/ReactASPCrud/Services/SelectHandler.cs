@@ -19,8 +19,7 @@ namespace ReactASPCrud.Services
             SplitInput();
             if (RecordService.input.Contains("SELECT"))
             {
-                ValidateInput();
-                if (RecordService.input.IndexOf("SELECT").Equals(0) && tableExist())
+                if (ValidateInput() && RecordService.input.IndexOf("SELECT").Equals(0) && tableExist())
                 {
                     tableIndexSelect = getTableIndexSelect();
                     RecordService.selected.Clear();
@@ -75,7 +74,7 @@ namespace ReactASPCrud.Services
                 {
                     _nextHandler.Process();
                 }
-                throw new Exception("input is not a Selection");
+                //throw new Exception("input is not a Selection");
             }
         }
 
@@ -113,13 +112,15 @@ namespace ReactASPCrud.Services
             return tableInx;
         }
 
-        public override void ValidateInput()
+        public override bool ValidateInput()
         {
-            RecordService.Messages.Clear();
-            StatementNameIsInInput();
+            bool inputIsValid = true;
+
+
             if (!RecordService.input.Contains(";"))
             {
                 RecordService.Messages.Add("you are missing the ; symbol");
+                inputIsValid = false;
             }
             if (tableExist())
             {
@@ -128,30 +129,20 @@ namespace ReactASPCrud.Services
             if (!RecordService.input.IndexOf("SELECT").Equals(0))
             {
                 RecordService.Messages.Add("Statement is in Wrong Place Start your input with it!");
+                inputIsValid = false;
             }
             if (RecordService.keyWords.Length > 4 && RecordService.keyWords.Contains("*"))
             {
                 RecordService.Messages.Add("you are not able to use * and other column name in the same time");
+                inputIsValid = false;
             }
             if (RecordService.keyWords.Length < 4)
             {
                 RecordService.Messages.Add("you are missing something");
+                inputIsValid = false;
             }
-        }
 
-        public void StatementNameIsInInput()
-        {
-            foreach (var inp in RecordService.AccessableInputs)
-            {
-                if (RecordService.input.Contains(inp))
-                {
-                    RecordService.Messages.Add("State is correct");
-                }
-                else
-                {
-                    RecordService.Messages.Add("Your input is missing a state or it is in incorrect form. Use Uppercase Letters!");
-                }
-            }
+            return inputIsValid;
         }
     }
 

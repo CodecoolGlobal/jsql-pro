@@ -35,10 +35,11 @@ namespace ReactASPCrud.Services
             {
                 string values = RecordService.input.Replace(",", "");
                 RecordService.keyWords = values.Remove(values.Length - 1).Split(" ");
+                RecordService.inputStringSlices = new string[] { "" };
             }
         }
 
-        public virtual void ValidateInput()
+        public virtual bool ValidateInput()
         {
             throw new NotImplementedException();
         }
