@@ -33,13 +33,13 @@ public class WebDriverManager {
         if (driver == null) {
             try {
                 System.setProperty("webdriver.gecko.driver", "src\\test\\resources\\geckodriver.exe");
-                FirefoxOptions options = new FirefoxOptions();
-                options.addArguments("--start-maximized");
+                //FirefoxOptions options = new FirefoxOptions();
+                //options.addArguments("--start-maximized");
                 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-                capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options);
-                //capabilities.setBrowserName("chrome");
-                //capabilities.setPlatform(Platform.LINUX);
-                driver = new RemoteWebDriver(new URL(gridUrl), options);
+                //capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options);
+                capabilities.setBrowserName("firefox");
+                capabilities.setPlatform(Platform.WIN10);
+                driver = new RemoteWebDriver(new URL(gridUrl), capabilities);
             } catch (MalformedURLException e) {
                 e.fillInStackTrace();
             }
