@@ -38,8 +38,8 @@ public class WebDriverManager {
                 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
                 //capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options);
                 capabilities.setBrowserName("firefox");
-                capabilities.setPlatform(Platform.WIN10);
-                driver = new RemoteWebDriver(new URL(hubUrl), capabilities);
+                capabilities.setPlatform(Platform.LINUX);
+                driver = new RemoteWebDriver(new URL(gridUrl), capabilities);
             } catch (MalformedURLException e) {
                 e.fillInStackTrace();
             }
