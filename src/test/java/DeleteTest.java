@@ -8,8 +8,8 @@ public class DeleteTest extends Initialization {
     @Test
     public void deleteATable() {
         homePage.fillTheTextInputToCreateValid();
-        Assertions.assertFalse(homePage.checkTableTitleIsNotDisplayed());
         homePage.fillTheTextInputToDelete();
+        Assertions.assertFalse(homePage.checkTableTitleIsNotDisplayed());
     }
 
     @Test
