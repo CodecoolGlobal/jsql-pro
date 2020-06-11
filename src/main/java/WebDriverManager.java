@@ -17,7 +17,7 @@ public class WebDriverManager {
     private static String hubUser = System.getenv("hubUSERNAME");
     private static String hub = System.getenv("hubURL");
     private static String hubUrl = "https://" + hubUser + ":" + password + "@" + hub;
-    private static String gridUrl = "http://10.0.2.2:4444/wd/hub";
+    private static String gridUrl = "http://172.17.0.2:4444/grid/register";
 
 
     private WebDriverManager() {
