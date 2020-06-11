@@ -9,7 +9,7 @@ public class DeleteTest extends Initialization {
     public void deleteATable() {
         homePage.fillTheTextInputToCreateValid();
         homePage.fillTheTextInputToDelete();
-        Assertions.assertFalse(homePage.checkTableTitleIsNotDisplayed());
+        Assertions.assertTrue(homePage.checkTableTitleIsNotDisplayed());
     }
 
     @Test

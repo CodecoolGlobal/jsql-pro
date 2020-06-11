@@ -18,7 +18,7 @@ public class Initialization {
     @AfterEach
     public void teardown() {
         WebDriverManager.getDriver().close();
-        WebDriverManager.quit();
+        //WebDriverManager.quit();
     }
 
 }
