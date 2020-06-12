@@ -9,14 +9,14 @@ Feature: Insert a table
     And I click the enter
     And I fill the input field "<textFieldSelect>"
     And I click the enter
-    And I check the table record
+    And I check the table record "<errorMessage>"
     Then I fill the input field "<textFieldDelete>"
 
     Examples:
-      | textFieldCreate                                                               | textFieldInsert                                        | textFieldSelect        | textFieldDelete |
-      | CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight); | INSERT INTO myTable (Jozsef, Jozsi, 60, 92);           | SELECT * FROM myTable; | DELETE myTable; |
-      | CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight); | INSERT INTO myTable (Becstelen Jozsef, 2009, 60, war); | SELECT * FROM myTable; | DELETE myTable; |
-      | CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight); | INSERT INTO myTable (Jozsef, Jozsi, 60, 92);           | SELECT * FROM myTable; | DELETE myTable; |
-      | CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight); | INSERT Into myTable (Jozsef, Jozsi, 60, 92);           | SELECT * FROM myTable; | DELETE myTable; |
-      | CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight); | INSERT into myTable (Jozsef, Jozsi, 60, 92);           | SELECT * FROM myTable; | DELETE myTable; |
-      | CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight); | INSERT iNtO myTable (Jozsef, Jozsi, 60, 92);           | SELECT * FROM myTable; | DELETE myTable; |
+      | textFieldCreate                                                               | textFieldInsert                                        | textFieldSelect        | textFieldDelete |errorMessage|
+      | CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight); | INSERT INTO myTable (Jozsef, Jozsi, 60, 92);           | SELECT * FROM myTable; | DELETE myTable; |It should be good.|
+      | CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight); | INSERT INTO myTable (Becstelen Jozsef, 2009, 60, war); | SELECT * FROM myTable; | DELETE myTable; |It should be good.|
+      | CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight); | INSERT INTO myTable (Jozsef, Jozsi, 60, 92);           | SELECT * FROM myTable; | DELETE myTable; |It should be good.|
+      | CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight); | INSERT Into myTable (Jozsef, Jozsi, 60, 92);           | SELECT * FROM myTable; | DELETE myTable; |Case sensitive.   |
+      | CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight); | INSERT into myTable (Jozsef, Jozsi, 60, 92);           | SELECT * FROM myTable; | DELETE myTable; |Case sensitive.   |
+      | CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight); | INSERT iNtO myTable (Jozsef, Jozsi, 60, 92);           | SELECT * FROM myTable; | DELETE myTable; |Case sensitive.   |

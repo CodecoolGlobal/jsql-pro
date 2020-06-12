@@ -1,6 +1,8 @@
 package com.qa.stepDefinitions;
 
 import com.qa.pages.HomePage;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -31,9 +33,9 @@ public class CreateTest {
 
     }
 
-    @Then("^I check the table$")
-    public void I_check_the_table() {
-        assertTrue(homePage.checkTableTitleIsDisplayed());
+    @And("^I check the table \"([^\"]*)\"$")
+    public void I_check_the_table(String errorMessage) {
+        assertTrue(homePage.checkTableTitleIsDisplayed(), errorMessage);
     }
 
     @Then("^I delete the table$")
@@ -41,8 +43,8 @@ public class CreateTest {
         homePage.fillTheTextInputToDelete();
     }
 
-    @Then("^I check the table is not exist$")
-    public void iCheckTheTableIsNotExist() {
-        assertTrue(homePage.checkTableTitleIsNotDisplayed());
+    @Then("^I check the table is not exist \"([^\"]*)\"$")
+    public void iCheckTheTableIsNotExist(String errorMessage) {
+        assertTrue(homePage.checkTableTitleIsNotDisplayed(), errorMessage);
     }
 }

@@ -11,9 +11,9 @@ public class DeleteTest {
 
     private HomePage homePage = new HomePage();
 
-    @Then("^I check the table record$")
-    public void I_check_the_table_record() {
-        assertTrue(homePage.checkTableRecord());
+    @And("^I check the table record \"([^\"]*)\"$")
+    public void I_check_the_table_record(String errorMessage) {
+        assertTrue(homePage.checkTableRecord(), errorMessage);
     }
 
 }
