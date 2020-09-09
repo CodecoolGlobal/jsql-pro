@@ -83,6 +83,11 @@ namespace ReactASPCrud.Services
             {
                 RecordService.Messages.Add("Table Exist");
             }
+            if (!RecordService.input.Contains("TABLE"))
+            {
+                RecordService.Messages.Add("Missing TABLE keyword");
+                inputIsValid = false;
+            }
             if (!RecordService.input.IndexOf("DELETE").Equals(0))
             {
                 RecordService.Messages.Add("Statement is in Wrong Place Start your input with it!");

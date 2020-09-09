@@ -56,7 +56,11 @@ namespace ReactASPCrud.Services
         {
             bool inputIsValid = true;
 
-
+            if (!(RecordService.inputStringSlices.Length % 2).Equals(0))
+            {
+                RecordService.Messages.Add("values in wrong format");
+                inputIsValid = false;
+            }
             if (!RecordService.input.Contains(";"))
             {
                 RecordService.Messages.Add("you are missing the ; symbol");

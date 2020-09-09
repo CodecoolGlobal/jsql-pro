@@ -161,6 +161,16 @@ namespace ReactASPCrud.Services
             Assert.False(createHandler.ValidateInput());
         }
 
+        //[Fact]
+        //public void CreateHandlerProcess()
+        //{
+        //    RecordService.Messages.Clear();
+        //    RecordService.records.Clear();
+        //    RecordService.input = "TABLE CREATE testTable (string name, string nickname, int32 age, int32 weight);";
+        //    recordService.manageTable();
+        //    Assert.Equal(new Dictionary<string, string>() {"name": string }, RecordService.records[0].columns);
+        //}
+
         //Tests for INSERT statement-------------------------------------------------------------------------------------------
 
         [Fact]
@@ -268,6 +278,16 @@ namespace ReactASPCrud.Services
             RecordService.input = "DELETE TABLE myTable kiskutya;";
             recordService.manageTable();
             Assert.Equal(RecordService.Messages, new List<string>() { "State is correct", "You entered to many information" });
+        }
+
+        [Fact]
+        public void DeleteInputWithoutTableKeyword()
+        {
+            RecordService.Messages.Clear();
+            RecordService.records.Clear();
+            RecordService.input = "DELETE myTable;";
+            recordService.manageTable();
+            Assert.Equal(RecordService.Messages, new List<string>() { "State is correct", "Missing TABLE keyword" });
         }
 
         //Tests for SELECT statement-------------------------------------------------------------------------------------------
