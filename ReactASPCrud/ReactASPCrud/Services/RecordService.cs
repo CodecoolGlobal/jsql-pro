@@ -15,7 +15,9 @@ namespace ReactASPCrud.Services
         internal static List<string> Messages = new List<string>();
         internal static string[] AccessableInputs = new string[] { "CREATE", "INSERT", "DELETE", "SELECT" };
 
-        static RecordService() { }
+        public RecordService() {
+            setApi();
+        }
         public List<Table> GetAll()
         {
             return records;
@@ -69,9 +71,10 @@ namespace ReactASPCrud.Services
         }
 
         //fill api with dummi data
-        public void fillDataBase(){
+        public void setApi(){
             CreateHandler createHandler = new CreateHandler();
             InsertHandler insertHandler = new InsertHandler();
+            SelectHandler selectHandler = new SelectHandler();
             
             input = "CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight);";
             createHandler.Process();
@@ -79,6 +82,10 @@ namespace ReactASPCrud.Services
             insertHandler.Process();
             input = "INSERT INTO myTable (Péter, Petii, 45, 77);";
             insertHandler.Process();
+            input = "INSERT INTO myTable (Gyula, Gyuszi, 32, 67);";
+            insertHandler.Process();
+            input = "SELECT name, age FROM myTable;";
+            selectHandler.Process();
         }
     }
 }
