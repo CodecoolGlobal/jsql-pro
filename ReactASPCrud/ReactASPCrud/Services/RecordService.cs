@@ -67,6 +67,19 @@ namespace ReactASPCrud.Services
             }
 
         }
+
+        //fill api with dummi data
+        public void fillDataBase(){
+            CreateHandler createHandler = new CreateHandler();
+            InsertHandler insertHandler = new InsertHandler();
+            
+            input = "CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight);";
+            createHandler.Process();
+            input = "INSERT INTO myTable (József, Józsi, 60, 92);";
+            insertHandler.Process();
+            input = "INSERT INTO myTable (Péter, Petii, 45, 77);";
+            insertHandler.Process();
+        }
     }
 }
 //refactor előtt kb 500 sor volt

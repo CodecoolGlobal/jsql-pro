@@ -19,6 +19,7 @@ namespace ReactASPCrud.Controllers
         public RecordsController(RecordService recordService)
         {
             this.recordService = recordService;
+            recordService.fillDataBase();
         }
 
         // GET api/records/data
