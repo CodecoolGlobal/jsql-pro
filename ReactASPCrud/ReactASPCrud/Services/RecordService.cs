@@ -41,10 +41,12 @@ namespace ReactASPCrud.Services
                 DeleteHandler deleteHandler = new DeleteHandler();
                 InsertHandler insertHandler = new InsertHandler();
                 SelectHandler selectHandler = new SelectHandler();
+                WhereHandler whereHandler = new WhereHandler();
 
                 createHandler.SetNextHandler(deleteHandler);
                 deleteHandler.SetNextHandler(insertHandler);
                 insertHandler.SetNextHandler(selectHandler);
+                selectHandler.SetNextHandler(whereHandler);
                 createHandler.Process();
             }
             else
@@ -75,6 +77,7 @@ namespace ReactASPCrud.Services
             CreateHandler createHandler = new CreateHandler();
             InsertHandler insertHandler = new InsertHandler();
             SelectHandler selectHandler = new SelectHandler();
+            WhereHandler whereHandler = new WhereHandler();
             
             input = "CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight);";
             createHandler.Process();
@@ -86,6 +89,8 @@ namespace ReactASPCrud.Services
             insertHandler.Process();
             input = "SELECT name, age FROM myTable;";
             selectHandler.Process();
+            input = "WHERE age > 33;";
+            whereHandler.Process();
         }
     }
 }

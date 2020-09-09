@@ -11,6 +11,7 @@ namespace ReactASPCrud.Services
     public class SelectHandler : BaseHandler
     {
         private int tableIndexSelect;
+        internal static List<ExpandoObject> selectedObjects = new List<ExpandoObject>();
 
         public SelectHandler() { }
 
@@ -25,7 +26,6 @@ namespace ReactASPCrud.Services
                     RecordService.selected.Clear();
                     Table table = RecordService.records[tableIndexSelect];
                     List<string> selectedValues = new List<string>();
-                    List<ExpandoObject> selectedObjects = new List<ExpandoObject>();
 
                     for (int i = 1; i < RecordService.keyWords.Length - 2; i++)
                     {
