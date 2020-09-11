@@ -62,6 +62,22 @@ namespace ReactASPCrud.Services
             {
                 return true;
             }
+            if (RecordService.keyWords[2].Equals("<") && int.TryParse(value.ToString(), out int result1) && Convert.ToInt64(value) < Convert.ToInt64(RecordService.keyWords[3]))
+            {
+                return true;
+            }
+            if (RecordService.keyWords[2].Equals(">=") && int.TryParse(value.ToString(), out int result2) && Convert.ToInt64(value) >= Convert.ToInt64(RecordService.keyWords[3]))
+            {
+                return true;
+            }
+            if (RecordService.keyWords[2].Equals("<=") && int.TryParse(value.ToString(), out int result3) && Convert.ToInt64(value) <= Convert.ToInt64(RecordService.keyWords[3]))
+            {
+                return true;
+            }
+            if (RecordService.keyWords[2].Equals("=") && int.TryParse(value.ToString(), out int result4) && Convert.ToInt64(value) == Convert.ToInt64(RecordService.keyWords[3]))
+            {
+                return true;
+            }
             else
             {
                 return false;
