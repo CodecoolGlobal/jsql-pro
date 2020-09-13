@@ -1,11 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using ReactASPCrud.Models;
 
 namespace ReactASPCrud.Services
 {
@@ -14,19 +9,17 @@ namespace ReactASPCrud.Services
 
         private int tableIndex;
 
-        public WhereHandler() { }
-
         public override void Process()
         {
             SplitInput();
-            if (RecordService.input.Contains("WHERE"))
+            if (input.Contains("WHERE"))
             {
                 List<ExpandoObject> whereInSelect = new List<ExpandoObject>();
                 foreach (var exp in SelectHandler.selectedObjects)
                 {
                     foreach (KeyValuePair<string, object> kvp in exp)
                     {
-                        if (kvp.Key.Equals(RecordService.keyWords[1]) && operate(kvp.Value))
+                        if (kvp.Key.Equals(keyWords[1]) && operate(kvp.Value))
                         {
                             whereInSelect.Add(exp);
                             break;
@@ -34,7 +27,7 @@ namespace ReactASPCrud.Services
                     }
                 }
                 //selected columns
-                RecordService.selected.Clear();
+                selected.Clear();
                 foreach (var exp in whereInSelect)
                 {
                     dynamic expado = new ExpandoObject();
@@ -46,7 +39,7 @@ namespace ReactASPCrud.Services
                             Util.AddProperty(expado, kvp.Key, kvp.Value);
                         }
                     }
-                    RecordService.selected.Add(expado);
+                    selected.Add(expado);
                 }
 
                 // if (ValidateInput())
@@ -71,27 +64,27 @@ namespace ReactASPCrud.Services
 
         public bool operate(object value)
         {
-            if (RecordService.keyWords[2].Equals(">") && int.TryParse(value.ToString(), out int result) && Convert.ToInt64(value) > Convert.ToInt64(RecordService.keyWords[3]))
+            if (keyWords[2].Equals(">") && int.TryParse(value.ToString(), out int result) && Convert.ToInt64(value) > Convert.ToInt64(keyWords[3]))
             {
                 return true;
             }
-            if (RecordService.keyWords[2].Equals("<") && int.TryParse(value.ToString(), out int result1) && Convert.ToInt64(value) < Convert.ToInt64(RecordService.keyWords[3]))
+            if (keyWords[2].Equals("<") && int.TryParse(value.ToString(), out int result1) && Convert.ToInt64(value) < Convert.ToInt64(keyWords[3]))
             {
                 return true;
             }
-            if (RecordService.keyWords[2].Equals(">=") && int.TryParse(value.ToString(), out int result2) && Convert.ToInt64(value) >= Convert.ToInt64(RecordService.keyWords[3]))
+            if (keyWords[2].Equals(">=") && int.TryParse(value.ToString(), out int result2) && Convert.ToInt64(value) >= Convert.ToInt64(keyWords[3]))
             {
                 return true;
             }
-            if (RecordService.keyWords[2].Equals("<=") && int.TryParse(value.ToString(), out int result3) && Convert.ToInt64(value) <= Convert.ToInt64(RecordService.keyWords[3]))
+            if (keyWords[2].Equals("<=") && int.TryParse(value.ToString(), out int result3) && Convert.ToInt64(value) <= Convert.ToInt64(keyWords[3]))
             {
                 return true;
             }
-            if (RecordService.keyWords[2].Equals("=") && int.TryParse(value.ToString(), out int result4) && Convert.ToInt64(value) == Convert.ToInt64(RecordService.keyWords[3]))
+            if (keyWords[2].Equals("=") && int.TryParse(value.ToString(), out int result4) && Convert.ToInt64(value) == Convert.ToInt64(keyWords[3]))
             {
                 return true;
             }
-            if (RecordService.keyWords[2].Equals("=") && value.Equals(RecordService.keyWords[3]))
+            if (keyWords[2].Equals("=") && value.Equals(keyWords[3]))
             {
                 return true;
             }

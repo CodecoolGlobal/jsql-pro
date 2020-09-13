@@ -18,12 +18,12 @@ namespace ReactASPCrud.Services
         public override void Process()
         {
             SplitInput();
-            if (RecordService.input.Contains("INSERT"))
+            if (input.Contains("INSERT"))
             {
-                if (ValidateInput() && RecordService.input.IndexOf("INSERT").Equals(0) && tableExist())
+                if (ValidateInput() && input.IndexOf("INSERT").Equals(0) && tableExist())
                 {
                     tableIndex = getTableIndex();
-                    Table table = RecordService.records[tableIndex];
+                    Table table = records[tableIndex];
                     //if (RecordService.keyWords.Length > table.columns.Keys.Count || RecordService.keyWords.Length < table.columns.Keys.Count)
                     //{
                     //    RecordService.Messages.Add("the entered velue number is incorrect");
@@ -32,7 +32,7 @@ namespace ReactASPCrud.Services
                     int sliceCount = 0;
                     foreach (var value in table.columns.Keys)
                     {
-                        Util.AddProperty(expado, value, convertToType(table.columns[value], RecordService.inputStringSlices[sliceCount]));
+                        Util.AddProperty(expado, value, convertToType(table.columns[value], inputStringSlices[sliceCount]));
                         sliceCount++;
                     }
                     //serialise
@@ -56,9 +56,9 @@ namespace ReactASPCrud.Services
         public bool tableExist()
         {
             bool tableExist = false;
-            foreach (Table table in RecordService.records)
+            foreach (Table table in records)
             {
-                if (table.Name.Equals(RecordService.keyWords[2]))
+                if (table.Name.Equals(keyWords[2]))
                 {
                     tableExist = true;
                 }
@@ -83,7 +83,7 @@ namespace ReactASPCrud.Services
                     }
                     else
                     {
-                        RecordService.Messages.Add("String could not be parsed.");
+                        Messages.Add("String could not be parsed.");
                         return null;
                     }
                 case "int64":
@@ -93,7 +93,7 @@ namespace ReactASPCrud.Services
                     }
                     else
                     {
-                        RecordService.Messages.Add("String could not be parsed.");
+                        Messages.Add("String could not be parsed.");
                         return null;
                     }
                 case "bool":
@@ -103,7 +103,7 @@ namespace ReactASPCrud.Services
                     }
                     else
                     {
-                        RecordService.Messages.Add("String could not be parsed.");
+                        Messages.Add("String could not be parsed.");
                         return null;
                     }
                 default:
@@ -114,10 +114,10 @@ namespace ReactASPCrud.Services
         public int getTableIndex()
         {
             int tableInx = -1;
-            for (int i = 0; i < RecordService.records.Count; i++)
+            for (int i = 0; i < records.Count; i++)
             {
                 //új módszer kell a tábla nevének a megszerzésére
-                if (RecordService.records[i].Name.Equals(RecordService.keyWords[2]))
+                if (records[i].Name.Equals(keyWords[2]))
                 {
                     tableInx = i;
                 }
@@ -135,33 +135,33 @@ namespace ReactASPCrud.Services
 
            
 
-            if (!RecordService.input.Contains(";"))
+            if (!input.Contains(";"))
             {
-                RecordService.Messages.Add("you are missing the ; symbol");
+                Messages.Add("you are missing the ; symbol");
                 inputIsValid = false;
             }
-            if (RecordService.keyWords.Contains("INSERT") && RecordService.keyWords.Contains("INTO") && RecordService.keyWords.Length < 3)
+            if (keyWords.Contains("INSERT") && keyWords.Contains("INTO") && keyWords.Length < 3)
             {
-                RecordService.Messages.Add("Table name is missing");
+                Messages.Add("Table name is missing");
                 inputIsValid = false;
             }
             if (tableExist())
             {
-                RecordService.Messages.Add("Table Exist");
+                Messages.Add("Table Exist");
             }
-            if (!RecordService.input.IndexOf("INSERT").Equals(0))
+            if (!input.IndexOf("INSERT").Equals(0))
             {
-                RecordService.Messages.Add("Statement is in Wrong Place Start your input with it!");
+                Messages.Add("Statement is in Wrong Place Start your input with it!");
                 inputIsValid = false;
             }
-            if (RecordService.inputStringSlices.Length < 2)
+            if (inputStringSlices.Length < 2)
             {
-                RecordService.Messages.Add("You are missing values");
+                Messages.Add("You are missing values");
                 inputIsValid = false;
             }
-            if (!RecordService.input.Contains("(") || (!RecordService.input.Contains(")")))
+            if (!input.Contains("(") || (!input.Contains(")")))
             {
-                RecordService.Messages.Add("( or ) is missing");
+                Messages.Add("( or ) is missing");
                 inputIsValid = false;
             }
 

@@ -7,17 +7,19 @@ namespace ReactASPCrud.Services
 {
     public class RecordService
     {
-        internal static string input { get; set; }
-        internal static List<Table> records = new List<Table>();
-        internal static List<ExpandoObject> selected = new List<ExpandoObject>();
-        internal static string[] inputStringSlices;
-        internal static string[] keyWords;
-        internal static List<string> Messages = new List<string>();
-        internal static string[] AccessableInputs = new string[] { "CREATE", "INSERT", "DELETE", "SELECT" };
-
         public RecordService() {
-            setApi();
+            //records.Clear();
+            //setApi();
         }
+
+        public string input { get; set; }
+        public List<Table> records = new List<Table>();
+        public List<ExpandoObject> selected = new List<ExpandoObject>();
+        public string[] inputStringSlices;
+        public string[] keyWords;
+        public List<string> Messages = new List<string>();
+        public string[] AccessableInputs = new string[] { "CREATE", "INSERT", "DELETE", "SELECT" };
+
         public List<Table> GetAll()
         {
             return records;
@@ -58,16 +60,16 @@ namespace ReactASPCrud.Services
 
         public bool StatementNameIsInInput()
         {
-            if (RecordService.input.Contains("CREATE") || RecordService.input.Contains("SELECT") ||
-                RecordService.input.Contains("INSERT") || RecordService.input.Contains("DELETE") || 
-                RecordService.input.Contains("WHERE"))
+            if (input.Contains("CREATE") || input.Contains("SELECT") ||
+                input.Contains("INSERT") || input.Contains("DELETE") || 
+                input.Contains("WHERE"))
             {
-                RecordService.Messages.Add("State is correct");
+                Messages.Add("State is correct");
                 return true;
             }
             else
             {
-                RecordService.Messages.Add("Your input is missing a state or it is in incorrect form. Use Uppercase Letters!");
+                Messages.Add("Your input is missing a state or it is in incorrect form. Use Uppercase Letters!");
                 return false;
             }
 

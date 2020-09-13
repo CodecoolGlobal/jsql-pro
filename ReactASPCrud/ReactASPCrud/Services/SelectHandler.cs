@@ -13,24 +13,22 @@ namespace ReactASPCrud.Services
         private int tableIndexSelect;
         internal static List<ExpandoObject> selectedObjects = new List<ExpandoObject>();
 
-        public SelectHandler() { }
-
         public static List<string> selectedValues = new List<string>();
         public override void Process()
         {
             SplitInput();
-            if (RecordService.input.Contains("SELECT"))
+            if (input.Contains("SELECT"))
             {
-                if (ValidateInput() && RecordService.input.IndexOf("SELECT").Equals(0) && tableExist())
+                if (ValidateInput() && input.IndexOf("SELECT").Equals(0) && tableExist())
                 {
                     tableIndexSelect = getTableIndexSelect();
-                    RecordService.selected.Clear();
+                    selected.Clear();
                     selectedValues.Clear();
-                    Table table = RecordService.records[tableIndexSelect];
+                    Table table = records[tableIndexSelect];
 
-                    for (int i = 1; i < RecordService.keyWords.Length - 2; i++)
+                    for (int i = 1; i < keyWords.Length - 2; i++)
                     {
-                        selectedValues.Add(RecordService.keyWords[i]);
+                        selectedValues.Add(keyWords[i]);
                     }
 
                     foreach (var record in table.serialisedRecords)
@@ -47,7 +45,7 @@ namespace ReactASPCrud.Services
                             {
                                 Util.AddProperty(expado, kvp.Key, kvp.Value);
                             }
-                            RecordService.selected.Add(expado);
+                            selected.Add(expado);
                         }
                     }
                     else
@@ -63,7 +61,7 @@ namespace ReactASPCrud.Services
                                     Util.AddProperty(expado, kvp.Key, kvp.Value);
                                 }
                             }
-                            RecordService.selected.Add(expado);
+                            selected.Add(expado);
                         }
 
                     }
@@ -82,9 +80,9 @@ namespace ReactASPCrud.Services
         public bool tableExist()
         {
             bool tableExist = false;
-            foreach (Table table in RecordService.records)
+            foreach (Table table in records)
             {
-                if (table.Name.Equals(RecordService.keyWords[RecordService.keyWords.Length - 1]))
+                if (table.Name.Equals(keyWords[keyWords.Length - 1]))
                 {
                     tableExist = true;
                 }
@@ -99,9 +97,9 @@ namespace ReactASPCrud.Services
         public int getTableIndexSelect()
         {
             int tableInx = -1;
-            for (int i = 0; i < RecordService.records.Count; i++)
+            for (int i = 0; i < records.Count; i++)
             {
-                if (RecordService.records[i].Name.Equals(RecordService.keyWords[RecordService.keyWords.Length - 1]))
+                if (records[i].Name.Equals(keyWords[keyWords.Length - 1]))
                 {
                     tableInx = i;
                 }
@@ -118,28 +116,28 @@ namespace ReactASPCrud.Services
             bool inputIsValid = true;
 
 
-            if (!RecordService.input.Contains(";"))
+            if (!input.Contains(";"))
             {
-                RecordService.Messages.Add("you are missing the ; symbol");
+                Messages.Add("you are missing the ; symbol");
                 inputIsValid = false;
             }
             if (tableExist())
             {
-                RecordService.Messages.Add("Table Exist");
+                Messages.Add("Table Exist");
             }
-            if (!RecordService.input.IndexOf("SELECT").Equals(0))
+            if (!input.IndexOf("SELECT").Equals(0))
             {
-                RecordService.Messages.Add("Statement is in Wrong Place Start your input with it!");
+                Messages.Add("Statement is in Wrong Place Start your input with it!");
                 inputIsValid = false;
             }
-            if (RecordService.keyWords.Length > 4 && RecordService.keyWords.Contains("*"))
+            if (keyWords.Length > 4 && keyWords.Contains("*"))
             {
-                RecordService.Messages.Add("you are not able to use * and other column name in the same time");
+                Messages.Add("you are not able to use * and other column name in the same time");
                 inputIsValid = false;
             }
-            if (RecordService.keyWords.Length < 4)
+            if (keyWords.Length < 4)
             {
-                RecordService.Messages.Add("you are missing something");
+                Messages.Add("you are missing something");
                 inputIsValid = false;
             }
 

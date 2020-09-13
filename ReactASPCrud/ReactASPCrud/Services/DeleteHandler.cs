@@ -7,19 +7,18 @@ namespace ReactASPCrud.Services
     {
 
         private int tableIndexSelect;
-        public DeleteHandler() { }
 
         public override void Process()
         {
             SplitInput();
-            if (RecordService.input.Contains("DELETE"))
+            if (input.Contains("DELETE"))
             {
-                if (ValidateInput() && RecordService.input.IndexOf("DELETE").Equals(0) && tableExist())
+                if (ValidateInput() && input.IndexOf("DELETE").Equals(0) && tableExist())
                 {
                     tableIndexSelect = getTableIndexSelect();
                     if (tableIndexSelect >= 0)
                     {
-                        RecordService.records.RemoveAt(tableIndexSelect);
+                        records.RemoveAt(tableIndexSelect);
                     }
                 }
             }
@@ -37,9 +36,9 @@ namespace ReactASPCrud.Services
         public bool tableExist()
         {
             bool tableExist = false;
-            foreach (Table table in RecordService.records)
+            foreach (Table table in records)
             {
-                if (table.Name.Equals(RecordService.keyWords[2]))
+                if (table.Name.Equals(keyWords[2]))
                 {
                     tableExist = true;
                 }
@@ -55,9 +54,9 @@ namespace ReactASPCrud.Services
         public int getTableIndexSelect()
         {
             int tableInx = -1;
-            for (int i = 0; i < RecordService.records.Count; i++)
+            for (int i = 0; i < records.Count; i++)
             {
-                if (RecordService.records[i].Name.Equals(RecordService.keyWords[RecordService.keyWords.Length - 1]))
+                if (records[i].Name.Equals(keyWords[keyWords.Length - 1]))
                 {
                     tableInx = i;
                 }
@@ -74,28 +73,28 @@ namespace ReactASPCrud.Services
         {
             bool inputIsValid = true;
 
-            if (!RecordService.input.Contains(";"))
+            if (!input.Contains(";"))
             {
-                RecordService.Messages.Add("you are missing the ; symbol");
+                Messages.Add("you are missing the ; symbol");
                 inputIsValid = false;
             }
             if (tableExist())
             {
-                RecordService.Messages.Add("Table Exist");
+                Messages.Add("Table Exist");
             }
-            if (!RecordService.input.Contains("TABLE"))
+            if (!input.Contains("TABLE"))
             {
-                RecordService.Messages.Add("Missing TABLE keyword");
+                Messages.Add("Missing TABLE keyword");
                 inputIsValid = false;
             }
-            if (!RecordService.input.IndexOf("DELETE").Equals(0))
+            if (!input.IndexOf("DELETE").Equals(0))
             {
-                RecordService.Messages.Add("Statement is in Wrong Place Start your input with it!");
+                Messages.Add("Statement is in Wrong Place Start your input with it!");
                 inputIsValid = false;
             }
-            if (RecordService.keyWords.Length > 3)
+            if (keyWords.Length > 3)
             {
-                RecordService.Messages.Add("You entered to many information");
+                Messages.Add("You entered to many information");
                 inputIsValid = false;
             }
 

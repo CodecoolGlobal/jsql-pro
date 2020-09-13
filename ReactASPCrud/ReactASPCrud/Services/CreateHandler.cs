@@ -6,22 +6,22 @@ namespace ReactASPCrud.Services
 {
     public class CreateHandler : BaseHandler
     {
-        public CreateHandler() { }
+        public CreateHandler() : base() { }
 
         public override void Process()
         {
             SplitInput();
-            if (RecordService.input.Contains("CREATE"))
+            if (input.Contains("CREATE"))
             {
-                if (ValidateInput() && RecordService.input.IndexOf("CREATE").Equals(0) && !tableExist())
+                if (ValidateInput() && input.IndexOf("CREATE").Equals(0) && !tableExist())
                 {
                     Table table = new Table();
-                    table.Name = RecordService.keyWords[2];
-                    for (int i = 0; i < RecordService.inputStringSlices.Length - 1; i += 2)
+                    table.Name = keyWords[2];
+                    for (int i = 0; i < inputStringSlices.Length - 1; i += 2)
                     {
-                        table.addHeader(RecordService.inputStringSlices[i + 1], RecordService.inputStringSlices[i]);
+                        table.addHeader(inputStringSlices[i + 1], inputStringSlices[i]);
                     }
-                    RecordService.records.Add(table);
+                    records.Add(table);
                 }
             }
             else
@@ -37,9 +37,9 @@ namespace ReactASPCrud.Services
         public bool tableExist()
         {
             bool tableExist = false;
-            foreach (Table table in RecordService.records)
+            foreach (Table table in records)
             {
-                if (table.Name.Equals(RecordService.keyWords[2]))
+                if (table.Name.Equals(keyWords[2]))
                 {
                     tableExist = true;
                 }
@@ -56,38 +56,38 @@ namespace ReactASPCrud.Services
         {
             bool inputIsValid = true;
 
-            if (!(RecordService.inputStringSlices.Length % 2).Equals(0))
+            if (!(inputStringSlices.Length % 2).Equals(0))
             {
-                RecordService.Messages.Add("values in wrong format");
+                Messages.Add("values in wrong format");
                 inputIsValid = false;
             }
-            if (!RecordService.input.Contains(";"))
+            if (!input.Contains(";"))
             {
-                RecordService.Messages.Add("you are missing the ; symbol");
+                Messages.Add("you are missing the ; symbol");
                 inputIsValid = false;
             }
             if (tableExist())
             {
-                RecordService.Messages.Add("Table Exist");
+                Messages.Add("Table Exist");
             }
-            if (RecordService.keyWords.Contains("CREATE") && RecordService.keyWords.Contains("TABLE") && RecordService.keyWords.Length < 3)
+            if (keyWords.Contains("CREATE") && keyWords.Contains("TABLE") && keyWords.Length < 3)
             {
-                RecordService.Messages.Add("Table name is missing");
+                Messages.Add("Table name is missing");
                 inputIsValid = false;
             }
-            if (!RecordService.input.IndexOf("CREATE").Equals(0))
+            if (!input.IndexOf("CREATE").Equals(0))
             {
-                RecordService.Messages.Add("Statement is in Wrong Place Start your input with it!");
+                Messages.Add("Statement is in Wrong Place Start your input with it!");
                 inputIsValid = false;
             }
-            if (!RecordService.inputStringSlices.Equals(null) && RecordService.inputStringSlices.Length < 2)
+            if (!inputStringSlices.Equals(null) && inputStringSlices.Length < 2)
             {
-                RecordService.Messages.Add("values are missing");
+                Messages.Add("values are missing");
                 inputIsValid = false;
             }
-            if (!RecordService.input.Contains("(") || (!RecordService.input.Contains(")")))
+            if (!input.Contains("(") || (!input.Contains(")")))
             {
-                RecordService.Messages.Add("( or ) is missing");
+                Messages.Add("( or ) is missing");
                 inputIsValid = false;
             }
 
