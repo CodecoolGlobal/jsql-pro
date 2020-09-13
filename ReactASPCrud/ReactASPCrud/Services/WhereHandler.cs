@@ -21,27 +21,40 @@ namespace ReactASPCrud.Services
             SplitInput();
             if (RecordService.input.Contains("WHERE"))
             {
-                RecordService.selected.Clear();
+                List<ExpandoObject> whereInSelect = new List<ExpandoObject>();
                 foreach (var exp in SelectHandler.selectedObjects)
                 {
-                    List<ExpandoObject> whereInSelected = new List<ExpandoObject>();
-
                     foreach (KeyValuePair<string, object> kvp in exp)
                     {
                         if (kvp.Key.Equals(RecordService.keyWords[1]) && operate(kvp.Value))
                         {
-                            RecordService.selected.Add(exp);
+                            whereInSelect.Add(exp);
                             break;
                         }
                     }
-
-                    // if (ValidateInput())
-                    // {
-
-                    //itt kell nekem a Recordservice.selected expado objecteket tarolo lista es abban vegrehajtani a where statementet
-
-
                 }
+                //selected columns
+                RecordService.selected.Clear();
+                foreach (var exp in whereInSelect)
+                {
+                    dynamic expado = new ExpandoObject();
+
+                    foreach (KeyValuePair<string, object> kvp in exp)
+                    {
+                        if (SelectHandler.selectedValues.Contains(kvp.Key))
+                        {
+                            Util.AddProperty(expado, kvp.Key, kvp.Value);
+                        }
+                    }
+                    RecordService.selected.Add(expado);
+                }
+
+                // if (ValidateInput())
+                // {
+
+                //itt kell nekem a Recordservice.selected expado objecteket tarolo lista es abban vegrehajtani a where statementet
+
+
             }
             //where int nagyobb vagy kissebb vagy egyenlo
 

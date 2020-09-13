@@ -15,6 +15,7 @@ namespace ReactASPCrud.Services
 
         public SelectHandler() { }
 
+        public static List<string> selectedValues = new List<string>();
         public override void Process()
         {
             SplitInput();
@@ -24,8 +25,8 @@ namespace ReactASPCrud.Services
                 {
                     tableIndexSelect = getTableIndexSelect();
                     RecordService.selected.Clear();
+                    selectedValues.Clear();
                     Table table = RecordService.records[tableIndexSelect];
-                    List<string> selectedValues = new List<string>();
 
                     for (int i = 1; i < RecordService.keyWords.Length - 2; i++)
                     {
