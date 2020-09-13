@@ -59,7 +59,8 @@ namespace ReactASPCrud.Services
         public bool StatementNameIsInInput()
         {
             if (RecordService.input.Contains("CREATE") || RecordService.input.Contains("SELECT") ||
-                RecordService.input.Contains("INSERT") || RecordService.input.Contains("DELETE"))
+                RecordService.input.Contains("INSERT") || RecordService.input.Contains("DELETE") || 
+                RecordService.input.Contains("WHERE"))
             {
                 RecordService.Messages.Add("State is correct");
                 return true;

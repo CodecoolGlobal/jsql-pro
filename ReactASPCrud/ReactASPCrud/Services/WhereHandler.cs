@@ -24,16 +24,16 @@ namespace ReactASPCrud.Services
                 RecordService.selected.Clear();
                 foreach (var exp in SelectHandler.selectedObjects)
                 {
-                    dynamic expado = new ExpandoObject();
+                    List<ExpandoObject> whereInSelected = new List<ExpandoObject>();
 
                     foreach (KeyValuePair<string, object> kvp in exp)
                     {
                         if (kvp.Key.Equals(RecordService.keyWords[1]) && operate(kvp.Value))
                         {
-                            Util.AddProperty(expado, kvp.Key, kvp.Value);
+                            RecordService.selected.Add(exp);
+                            break;
                         }
                     }
-                    RecordService.selected.Add(expado);
 
                     // if (ValidateInput())
                     // {
@@ -75,6 +75,10 @@ namespace ReactASPCrud.Services
                 return true;
             }
             if (RecordService.keyWords[2].Equals("=") && int.TryParse(value.ToString(), out int result4) && Convert.ToInt64(value) == Convert.ToInt64(RecordService.keyWords[3]))
+            {
+                return true;
+            }
+            if (RecordService.keyWords[2].Equals("=") && value.Equals(RecordService.keyWords[3]))
             {
                 return true;
             }
