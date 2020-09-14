@@ -10,7 +10,7 @@ namespace ReactASPCrud.Services
 
         public IHandler _nextHandler;
 
-        public BaseHandler() : base()
+        public BaseHandler()
         {
          
             _nextHandler = null;

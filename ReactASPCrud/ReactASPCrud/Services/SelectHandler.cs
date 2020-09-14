@@ -19,19 +19,21 @@ namespace ReactASPCrud.Services
             SplitInput();
             if (Input.Contains("SELECT"))
             {
+                getSelectedColumns();
                 if (ValidateInput() && Input.IndexOf("SELECT").Equals(0) && tableExist())
                 {
                     tableIndexSelect = getTableIndexSelect();
+                    selectedObjects.Clear();
                     selected.Clear();
-                    selectedValues.Clear();
+
                     Table table = records[tableIndexSelect];
-                    getSelectedColumns();
                     foreach (var record in table.serialisedRecords)
                     {
                         selectedObjects.Add(JsonConvert.DeserializeObject<ExpandoObject>(record, new ExpandoObjectConverter()));
                     }
                     if (selectedValues.Count().Equals(1) && selectedValues[0].Equals("*"))
                     {
+                        getAllColumns();
                         foreach (var exp in selectedObjects)
                         {
                             dynamic expado = new ExpandoObject();
@@ -62,13 +64,9 @@ namespace ReactASPCrud.Services
                     }
                 }
             }
-            else
+            if (_nextHandler != null)
             {
-                if (_nextHandler != null)
-                {
-                    _nextHandler.Process();
-                }
-                //throw new Exception("input is not a Selection");
+                _nextHandler.Process();
             }
         }
 
@@ -77,7 +75,7 @@ namespace ReactASPCrud.Services
             bool tableExist = false;
             foreach (Table table in records)
             {
-                if (table.Name.Equals(keyWords[keyWords.Length - 1]))
+                if (table.Name.Equals(keyWords[Array.IndexOf(keyWords, "FROM") + 1]))
                 {
                     tableExist = true;
                 }
@@ -94,7 +92,7 @@ namespace ReactASPCrud.Services
             int tableInx = -1;
             for (int i = 0; i < records.Count; i++)
             {
-                if (records[i].Name.Equals(keyWords[keyWords.Length - 1]))
+                if (records[i].Name.Equals(keyWords[Array.IndexOf(keyWords, "FROM") + 1]))
                 {
                     tableInx = i;
                 }
@@ -108,6 +106,7 @@ namespace ReactASPCrud.Services
 
         public void getSelectedColumns()
         {
+            selectedValues.Clear();
             for (int i = 1; i < keyWords.Length - 2; i++)
             {
                 if (keyWords[i].Equals("FROM"))
@@ -116,6 +115,15 @@ namespace ReactASPCrud.Services
                 }
                 selectedValues.Add(keyWords[i]);
             }
+        }
+
+        public void getAllColumns()
+        {
+            foreach (KeyValuePair<string, object> kvp in selectedObjects[0])
+            {
+                selectedValues.Add(kvp.Key);
+            }
+
         }
 
         public override bool ValidateInput()
@@ -137,16 +145,16 @@ namespace ReactASPCrud.Services
                 Messages.Add("Statement is in Wrong Place Start your input with it!");
                 inputIsValid = false;
             }
-            if (keyWords.Length > 4 && keyWords.Contains("*"))
+            if (selectedValues.Count > 1 && keyWords.Contains("*"))
             {
                 Messages.Add("you are not able to use * and other column name in the same time");
                 inputIsValid = false;
             }
-            if (keyWords.Length < 4)
-            {
-                Messages.Add("you are missing something");
-                inputIsValid = false;
-            }
+            //if (keyWords.Length < 4)
+            //{
+            //    Messages.Add("you are missing something");
+            //    inputIsValid = false;
+            //}
 
             return inputIsValid;
         }

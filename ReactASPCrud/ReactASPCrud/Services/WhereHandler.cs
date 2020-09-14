@@ -53,42 +53,39 @@ namespace ReactASPCrud.Services
 
 
             }
-            //where int nagyobb vagy kissebb vagy egyenlo
-
-            // }
-            // }
-            // else
-            // {
-            //     if (_nextHandler != null)
-            //     {
-            //         _nextHandler.Process();
-            //     }
-            // }
+            else
+            {
+                if (_nextHandler != null)
+                {
+                    _nextHandler.Process();
+                }
+                //throw new Exception("input is not a Creation");
+            }
         }
 
         public bool operate(object value)
         {
-            if (keyWords[2].Equals(">") && int.TryParse(value.ToString(), out int result) && Convert.ToInt64(value) > Convert.ToInt64(keyWords[3]))
+            if (whereKeyWords[2].Equals(">") && int.TryParse(value.ToString(), out int result) && Convert.ToInt64(value) > Convert.ToInt64(whereKeyWords[3]))
             {
                 return true;
             }
-            if (keyWords[2].Equals("<") && int.TryParse(value.ToString(), out int result1) && Convert.ToInt64(value) < Convert.ToInt64(keyWords[3]))
+            if (whereKeyWords[2].Equals("<") && int.TryParse(value.ToString(), out int result1) && Convert.ToInt64(value) < Convert.ToInt64(whereKeyWords[3]))
             {
                 return true;
             }
-            if (keyWords[2].Equals(">=") && int.TryParse(value.ToString(), out int result2) && Convert.ToInt64(value) >= Convert.ToInt64(keyWords[3]))
+            if (whereKeyWords[2].Equals(">=") && int.TryParse(value.ToString(), out int result2) && Convert.ToInt64(value) >= Convert.ToInt64(whereKeyWords[3]))
             {
                 return true;
             }
-            if (keyWords[2].Equals("<=") && int.TryParse(value.ToString(), out int result3) && Convert.ToInt64(value) <= Convert.ToInt64(keyWords[3]))
+            if (whereKeyWords[2].Equals("<=") && int.TryParse(value.ToString(), out int result3) && Convert.ToInt64(value) <= Convert.ToInt64(whereKeyWords[3]))
             {
                 return true;
             }
-            if (keyWords[2].Equals("=") && int.TryParse(value.ToString(), out int result4) && Convert.ToInt64(value) == Convert.ToInt64(keyWords[3]))
+            if (whereKeyWords[2].Equals("=") && int.TryParse(value.ToString(), out int result4) && Convert.ToInt64(value) == Convert.ToInt64(whereKeyWords[3]))
             {
                 return true;
             }
-            if (keyWords[2].Equals("=") && value.Equals(keyWords[3]))
+            if (whereKeyWords[2].Equals("=") && value.Equals(whereKeyWords[3]))
             {
                 return true;
             }
@@ -101,7 +98,7 @@ namespace ReactASPCrud.Services
         public void getWhereKeywords()
         {
             int index = Array.IndexOf(keyWords, "WHERE");
-            for (int i = index; i < keyWords.Length - 2; i++)
+            for (int i = index; i < keyWords.Length; i++)
             {
                 whereKeyWords.Add(keyWords[i]);
             }

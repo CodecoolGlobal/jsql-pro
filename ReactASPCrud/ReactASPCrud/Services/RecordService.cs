@@ -8,8 +8,6 @@ namespace ReactASPCrud.Services
     public class RecordService
     {
         public RecordService() {
-            records.Clear();
-            setApi();
         }
 
         protected static string Input { get; set; }
