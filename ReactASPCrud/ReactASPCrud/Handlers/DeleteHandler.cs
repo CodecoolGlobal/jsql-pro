@@ -1,4 +1,3 @@
-using System;
 using ReactASPCrud.Models;
 
 namespace ReactASPCrud.Services
@@ -21,6 +20,7 @@ namespace ReactASPCrud.Services
                         records.RemoveAt(tableIndexSelect);
                     }
                 }
+                selected.Clear();
             }
             else
             {

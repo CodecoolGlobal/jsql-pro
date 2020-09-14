@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ReactASPCrud.Services
 {
