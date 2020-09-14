@@ -12,13 +12,13 @@ namespace ReactASPCrud.Services
             //setApi();
         }
 
-        public string input { get; set; }
-        public List<Table> records = new List<Table>();
-        public List<ExpandoObject> selected = new List<ExpandoObject>();
-        public string[] inputStringSlices;
-        public string[] keyWords;
-        public List<string> Messages = new List<string>();
-        public string[] AccessableInputs = new string[] { "CREATE", "INSERT", "DELETE", "SELECT" };
+        protected static string input { get; set; }
+        protected static List<Table> records = new List<Table>();
+        protected static List<ExpandoObject> selected = new List<ExpandoObject>();
+        protected static string[] inputStringSlices;
+        protected static string[] keyWords;
+        protected static List<string> Messages = new List<string>();
+        protected static string[] AccessableInputs = new string[] { "CREATE", "INSERT", "DELETE", "SELECT" };
 
         public List<Table> GetAll()
         {
@@ -94,6 +94,14 @@ namespace ReactASPCrud.Services
             selectHandler.Process();
             input = "WHERE age > 33;";
             whereHandler.Process();
+        }
+        public void setInput(string _input)
+        {
+            input = _input;
+        }
+
+        public List<string> getMessages() {
+            return Messages;
         }
     }
 }

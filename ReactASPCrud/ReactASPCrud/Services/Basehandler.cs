@@ -49,8 +49,6 @@ namespace ReactASPCrud.Services
             throw new NotImplementedException();
         }
 
-        public void setInput(string _input) {
-            input = _input;
-        }
+
     }
 }

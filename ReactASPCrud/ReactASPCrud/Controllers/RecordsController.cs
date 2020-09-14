@@ -47,11 +47,11 @@ namespace ReactASPCrud.Controllers
         public async Task<IActionResult> Post([FromBody] Record record)
         {
             //recordService.SplitInputString(record);
-            recordService.input = record.Name;
-            recordService.Messages.Clear();
+            recordService.setInput(record.Name);
+            recordService.getMessages().Clear();
             recordService.manageTable();
 
-            return CreatedAtAction("Get", recordService.Messages);
+            return CreatedAtAction("Get", recordService.getMessages());
         }
 
         // PUT api/records/5
