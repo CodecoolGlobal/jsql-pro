@@ -14,5 +14,5 @@
 * INSERT INTO myTable (Gyula, Gyuszi, 32, 67);"
 * SELECT * FROM myTable;
 * SELECT name, age FROM myTable WHERE weight > 68;
-* DELETE myTable;
+* DELETE TABLE myTable;
 ##### you can find the cain of responsibility pattern in ReactASPCrud/ReactASPCrud/Services/RecordService.cs -> manageTable() method 
