@@ -59,7 +59,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "";
+            Input = "";
             recordService.manageTable();
             Assert.Equal(new List<string>() { "Your input is missing a state or it is in incorrect form. Use Uppercase Letters!", "The server is not able to process your input!" }, Messages);
 
@@ -70,7 +70,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "TABLE (string name, string nickname, int32 age, int32 weight);";
+            Input = "TABLE (string name, string nickname, int32 age, int32 weight);";
             recordService.manageTable();
             Assert.Equal(new List<string>() { "Your input is missing a state or it is in incorrect form. Use Uppercase Letters!", "The server is not able to process your input!" }, Messages);
         }
@@ -80,7 +80,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "create TABLE (string name, string nickname, int32 age, int32 weight);";
+            Input = "create TABLE (string name, string nickname, int32 age, int32 weight);";
             recordService.manageTable();
             Assert.Equal(new List<string>() { "Your input is missing a state or it is in incorrect form. Use Uppercase Letters!", "The server is not able to process your input!" }, Messages);
         }
@@ -94,7 +94,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "CREATE TABLE testTable (string name, string nickname, int32 age, int32 weight)";
+            Input = "CREATE TABLE testTable (string name, string nickname, int32 age, int32 weight)";
             recordService.manageTable();
             Assert.Equal(Messages, new List<string>() { "State is correct", "you are missing the ; symbol" });
         }
@@ -104,7 +104,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "CREATE TABLE testTable (string name, string nickname, int32 age, int32 weight);";
+            Input = "CREATE TABLE testTable (string name, string nickname, int32 age, int32 weight);";
             recordService.manageTable();
             Messages.Clear();
             recordService.manageTable();
@@ -116,7 +116,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "CREATE TABLE (string name, string nickname, int32 age, int32 weight);";
+            Input = "CREATE TABLE (string name, string nickname, int32 age, int32 weight);";
             recordService.manageTable();
             Assert.Equal(Messages, new List<string>() { "State is correct", "Table name is missing" });
         }
@@ -126,7 +126,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "TABLE CREATE testTable (string name, string nickname, int32 age, int32 weight);";
+            Input = "TABLE CREATE testTable (string name, string nickname, int32 age, int32 weight);";
             recordService.manageTable();
             Assert.Equal(Messages, new List<string>() { "State is correct", "Statement is in Wrong Place Start your input with it!" });
         }
@@ -136,7 +136,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "CREATE TABLE testTable ();";
+            Input = "CREATE TABLE testTable ();";
             recordService.manageTable();
             Assert.Equal(Messages, new List<string>() { "State is correct", "values are missing" });
         }
@@ -146,7 +146,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "CREATE TABLE testTable );";
+            Input = "CREATE TABLE testTable );";
             recordService.manageTable();
             Assert.Equal(Messages, new List<string>() { "State is correct", "values are missing", "( or ) is missing" });
         }
@@ -156,7 +156,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "CREATE TABLE testTable );";
+            Input = "CREATE TABLE testTable );";
             recordService.manageTable();
             Assert.False(createHandler.ValidateInput());
         }
@@ -178,7 +178,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "INSERT INTO (string name, string nickname, int32 age, int32 weight);";
+            Input = "INSERT INTO (string name, string nickname, int32 age, int32 weight);";
             recordService.manageTable();
             Assert.Equal(Messages, new List<string>() { "State is correct", "Table name is missing" });
         }
@@ -188,7 +188,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "INTO INSERT testTable (string name, string nickname, int32 age, int32 weight);";
+            Input = "INTO INSERT testTable (string name, string nickname, int32 age, int32 weight);";
             recordService.manageTable();
             Assert.Equal(Messages, new List<string>() { "State is correct", "Statement is in Wrong Place Start your input with it!" });
         }
@@ -198,7 +198,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "INSERT INTO testTable ();";
+            Input = "INSERT INTO testTable ();";
             recordService.manageTable();
             Assert.Equal(Messages, new List<string>() { "State is correct", "You are missing values" });
         }
@@ -208,7 +208,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "INSERT INTO testTable );";
+            Input = "INSERT INTO testTable );";
             recordService.manageTable();
             Assert.Equal(Messages, new List<string>() { "State is correct", "You are missing values", "( or ) is missing" });
         }
@@ -218,7 +218,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "INSERT INTO myTable (József, Józsi, 60, 92)";
+            Input = "INSERT INTO myTable (József, Józsi, 60, 92)";
             recordService.manageTable();
 
             Assert.Equal(Messages, new List<string>() { "State is correct", "you are missing the ; symbol" });
@@ -229,10 +229,10 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight);";
+            Input = "CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight);";
             recordService.manageTable();
             Messages.Clear();
-            input = "INSERT INTO myTable (József, Józsi, hatvan, 92);";
+            Input = "INSERT INTO myTable (József, Józsi, hatvan, 92);";
             recordService.manageTable();
 
             Assert.Equal(Messages, new List<string>() { "State is correct", "Table Exist", "String could not be parsed." });
@@ -254,7 +254,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "DELETE TABLE myTable";
+            Input = "DELETE TABLE myTable";
             recordService.manageTable();
 
             Assert.Equal(Messages, new List<string>() { "State is correct", "you are missing the ; symbol" });
@@ -265,7 +265,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "myTable DELETE TABLE;";
+            Input = "myTable DELETE TABLE;";
             recordService.manageTable();
             Assert.Equal(Messages, new List<string>() { "State is correct", "Statement is in Wrong Place Start your input with it!" });
         }
@@ -275,7 +275,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "DELETE TABLE myTable kiskutya;";
+            Input = "DELETE TABLE myTable kiskutya;";
             recordService.manageTable();
             Assert.Equal(Messages, new List<string>() { "State is correct", "You entered to many information" });
         }
@@ -285,7 +285,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "DELETE myTable;";
+            Input = "DELETE myTable;";
             recordService.manageTable();
             Assert.Equal(Messages, new List<string>() { "State is correct", "Missing TABLE keyword" });
         }
@@ -297,7 +297,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "SELECT name, age FROM myTable";
+            Input = "SELECT name, age FROM myTable";
             recordService.manageTable();
 
             Assert.Equal(Messages, new List<string>() { "State is correct", "you are missing the ; symbol" });
@@ -308,7 +308,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "name, age SELECT FROM myTable;";
+            Input = "name, age SELECT FROM myTable;";
             recordService.manageTable();
             Assert.Equal(Messages, new List<string>() { "State is correct", "Statement is in Wrong Place Start your input with it!" });
         }
@@ -318,7 +318,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "SELECT name, age, * FROM myTable;";
+            Input = "SELECT name, age, * FROM myTable;";
             recordService.manageTable();
             Assert.Equal(Messages, new List<string>() { "State is correct", "you are not able to use * and other column name in the same time" });
         }
@@ -328,7 +328,7 @@ namespace ReactASPCrud.Services
         {
             Messages.Clear();
             records.Clear();
-            input = "SELECT FROM myTable;";
+            Input = "SELECT FROM myTable;";
             recordService.manageTable();
             Assert.Equal(Messages, new List<string>() { "State is correct", "you are missing something" });
         }

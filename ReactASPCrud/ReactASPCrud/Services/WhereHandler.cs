@@ -12,7 +12,7 @@ namespace ReactASPCrud.Services
         public override void Process()
         {
             SplitInput();
-            if (input.Contains("WHERE"))
+            if (Input.Contains("WHERE"))
             {
                 List<ExpandoObject> whereInSelect = new List<ExpandoObject>();
                 foreach (var exp in SelectHandler.selectedObjects)

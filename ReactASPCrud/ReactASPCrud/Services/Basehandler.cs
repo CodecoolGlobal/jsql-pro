@@ -28,17 +28,17 @@ namespace ReactASPCrud.Services
 
         public virtual void SplitInput()
         {
-            if (input.Contains("("))
+            if (Input.Contains("("))
             {
-                int valuesStartFrom = input.IndexOf("(");
-                string values = input.Replace(",", "").Substring(input.Length - (input.Length - (valuesStartFrom + 1)));
+                int valuesStartFrom = Input.IndexOf("(");
+                string values = Input.Replace(",", "").Substring(Input.Length - (Input.Length - (valuesStartFrom + 1)));
                 inputStringSlices = values.Substring(0, values.Length - 2).Split(" ");
-                string keyvalues = input.Substring(0, valuesStartFrom - 1);
+                string keyvalues = Input.Substring(0, valuesStartFrom - 1);
                 keyWords = keyvalues.Split(" ");
             }
             else
             {
-                string values = input.Replace(",", "");
+                string values = Input.Replace(",", "");
                 keyWords = values.Remove(values.Length - 1).Split(" ");
                 inputStringSlices = new string[] { "" };
             }

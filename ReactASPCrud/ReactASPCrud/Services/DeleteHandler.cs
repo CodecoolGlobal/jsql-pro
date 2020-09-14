@@ -11,9 +11,9 @@ namespace ReactASPCrud.Services
         public override void Process()
         {
             SplitInput();
-            if (input.Contains("DELETE"))
+            if (Input.Contains("DELETE"))
             {
-                if (ValidateInput() && input.IndexOf("DELETE").Equals(0) && tableExist())
+                if (ValidateInput() && Input.IndexOf("DELETE").Equals(0) && tableExist())
                 {
                     tableIndexSelect = getTableIndexSelect();
                     if (tableIndexSelect >= 0)
@@ -73,7 +73,7 @@ namespace ReactASPCrud.Services
         {
             bool inputIsValid = true;
 
-            if (!input.Contains(";"))
+            if (!Input.Contains(";"))
             {
                 Messages.Add("you are missing the ; symbol");
                 inputIsValid = false;
@@ -82,12 +82,12 @@ namespace ReactASPCrud.Services
             {
                 Messages.Add("Table Exist");
             }
-            if (!input.Contains("TABLE"))
+            if (!Input.Contains("TABLE"))
             {
                 Messages.Add("Missing TABLE keyword");
                 inputIsValid = false;
             }
-            if (!input.IndexOf("DELETE").Equals(0))
+            if (!Input.IndexOf("DELETE").Equals(0))
             {
                 Messages.Add("Statement is in Wrong Place Start your input with it!");
                 inputIsValid = false;

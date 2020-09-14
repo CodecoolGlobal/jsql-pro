@@ -12,13 +12,13 @@ namespace ReactASPCrud.Services
             //setApi();
         }
 
-        protected static string input { get; set; }
+        protected static string Input { get; set; }
         protected static List<Table> records = new List<Table>();
         protected static List<ExpandoObject> selected = new List<ExpandoObject>();
         protected static string[] inputStringSlices;
         protected static string[] keyWords;
         protected static List<string> Messages = new List<string>();
-        protected static string[] AccessableInputs = new string[] { "CREATE", "INSERT", "DELETE", "SELECT" };
+        protected static string[] AccessableInputs = new string[] { "CREATE", "INSERT", "DELETE", "SELECT", "WHERE" };
 
         public List<Table> GetAll()
         {
@@ -60,9 +60,7 @@ namespace ReactASPCrud.Services
 
         public bool StatementNameIsInInput()
         {
-            if (input.Contains("CREATE") || input.Contains("SELECT") ||
-                input.Contains("INSERT") || input.Contains("DELETE") || 
-                input.Contains("WHERE"))
+            if (AccessableInputs.Any(s => Input.Contains(s)))
             {
                 Messages.Add("State is correct");
                 return true;
@@ -82,22 +80,22 @@ namespace ReactASPCrud.Services
             SelectHandler selectHandler = new SelectHandler();
             WhereHandler whereHandler = new WhereHandler();
             
-            input = "CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight);";
+            Input = "CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight);";
             createHandler.Process();
-            input = "INSERT INTO myTable (József, Józsi, 60, 92);";
+            Input = "INSERT INTO myTable (József, Józsi, 60, 92);";
             insertHandler.Process();
-            input = "INSERT INTO myTable (Péter, Petii, 45, 77);";
+            Input = "INSERT INTO myTable (Péter, Petii, 45, 77);";
             insertHandler.Process();
-            input = "INSERT INTO myTable (Gyula, Gyuszi, 32, 67);";
+            Input = "INSERT INTO myTable (Gyula, Gyuszi, 32, 67);";
             insertHandler.Process();
-            input = "SELECT name, age FROM myTable;";
+            Input = "SELECT name, age FROM myTable;";
             selectHandler.Process();
-            input = "WHERE age > 33;";
+            Input = "WHERE age > 33;";
             whereHandler.Process();
         }
         public void setInput(string _input)
         {
-            input = _input;
+            Input = _input;
         }
 
         public List<string> getMessages() {

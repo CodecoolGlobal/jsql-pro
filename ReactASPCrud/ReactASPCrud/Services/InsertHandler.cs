@@ -18,9 +18,9 @@ namespace ReactASPCrud.Services
         public override void Process()
         {
             SplitInput();
-            if (input.Contains("INSERT"))
+            if (Input.Contains("INSERT"))
             {
-                if (ValidateInput() && input.IndexOf("INSERT").Equals(0) && tableExist())
+                if (ValidateInput() && Input.IndexOf("INSERT").Equals(0) && tableExist())
                 {
                     tableIndex = getTableIndex();
                     Table table = records[tableIndex];
@@ -135,7 +135,7 @@ namespace ReactASPCrud.Services
 
            
 
-            if (!input.Contains(";"))
+            if (!Input.Contains(";"))
             {
                 Messages.Add("you are missing the ; symbol");
                 inputIsValid = false;
@@ -149,7 +149,7 @@ namespace ReactASPCrud.Services
             {
                 Messages.Add("Table Exist");
             }
-            if (!input.IndexOf("INSERT").Equals(0))
+            if (!Input.IndexOf("INSERT").Equals(0))
             {
                 Messages.Add("Statement is in Wrong Place Start your input with it!");
                 inputIsValid = false;
@@ -159,7 +159,7 @@ namespace ReactASPCrud.Services
                 Messages.Add("You are missing values");
                 inputIsValid = false;
             }
-            if (!input.Contains("(") || (!input.Contains(")")))
+            if (!Input.Contains("(") || (!Input.Contains(")")))
             {
                 Messages.Add("( or ) is missing");
                 inputIsValid = false;
