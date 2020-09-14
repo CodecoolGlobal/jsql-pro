@@ -1,5 +1,5 @@
 # ReactASPNET
-#### This is a REACT app with ASP.NET backend, AUTOMATIC tests and CHAIN OF RESPONSIBILITY pattern. With this you are able to handle basic SQL commands.
+#### This is a REACT app with ASP.NET backend, AUTOMATIC and UNIT tests and CHAIN OF RESPONSIBILITY pattern. With this you are able to handle basic SQL commands.
 #### Available Statements:
 * CREATE
 * SELECT
