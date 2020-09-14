@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ReactASPCrud.Services
 {
@@ -8,18 +10,20 @@ namespace ReactASPCrud.Services
     {
 
         private int tableIndex;
+        public static List<string> whereKeyWords = new List<string>();
 
         public override void Process()
         {
             SplitInput();
             if (Input.Contains("WHERE"))
             {
+                getWhereKeywords();
                 List<ExpandoObject> whereInSelect = new List<ExpandoObject>();
                 foreach (var exp in SelectHandler.selectedObjects)
                 {
                     foreach (KeyValuePair<string, object> kvp in exp)
                     {
-                        if (kvp.Key.Equals(keyWords[1]) && operate(kvp.Value))
+                        if (kvp.Key.Equals(whereKeyWords[1]) && operate(kvp.Value))
                         {
                             whereInSelect.Add(exp);
                             break;
@@ -91,6 +95,15 @@ namespace ReactASPCrud.Services
             else
             {
                 return false;
+            }
+        }
+
+        public void getWhereKeywords()
+        {
+            int index = Array.IndexOf(keyWords, "WHERE");
+            for (int i = index; i < keyWords.Length - 2; i++)
+            {
+                whereKeyWords.Add(keyWords[i]);
             }
         }
 

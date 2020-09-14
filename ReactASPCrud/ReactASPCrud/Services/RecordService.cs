@@ -8,8 +8,8 @@ namespace ReactASPCrud.Services
     public class RecordService
     {
         public RecordService() {
-            //records.Clear();
-            //setApi();
+            records.Clear();
+            setApi();
         }
 
         protected static string Input { get; set; }
@@ -88,10 +88,10 @@ namespace ReactASPCrud.Services
             insertHandler.Process();
             Input = "INSERT INTO myTable (Gyula, Gyuszi, 32, 67);";
             insertHandler.Process();
-            Input = "SELECT name, age FROM myTable;";
-            selectHandler.Process();
-            Input = "WHERE age > 33;";
-            whereHandler.Process();
+            //Input = "SELECT name, age FROM myTable;";
+            //selectHandler.Process();
+            //Input = "WHERE age > 33;";
+            //whereHandler.Process();
         }
         public void setInput(string _input)
         {

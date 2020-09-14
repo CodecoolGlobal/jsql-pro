@@ -25,12 +25,7 @@ namespace ReactASPCrud.Services
                     selected.Clear();
                     selectedValues.Clear();
                     Table table = records[tableIndexSelect];
-
-                    for (int i = 1; i < keyWords.Length - 2; i++)
-                    {
-                        selectedValues.Add(keyWords[i]);
-                    }
-
+                    getSelectedColumns();
                     foreach (var record in table.serialisedRecords)
                     {
                         selectedObjects.Add(JsonConvert.DeserializeObject<ExpandoObject>(record, new ExpandoObjectConverter()));
@@ -109,6 +104,18 @@ namespace ReactASPCrud.Services
                 }
             }
             return tableInx;
+        }
+
+        public void getSelectedColumns()
+        {
+            for (int i = 1; i < keyWords.Length - 2; i++)
+            {
+                if (keyWords[i].Equals("FROM"))
+                {
+                    break;
+                }
+                selectedValues.Add(keyWords[i]);
+            }
         }
 
         public override bool ValidateInput()
