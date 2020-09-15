@@ -28,16 +28,15 @@ class InputForm extends React.Component {
     }
 
     render() {
-        return <Form onSubmit={this.submitNew}>
-            <FormGroup>
-                <div class="form__group field">
-                    <input type="input" class="form__field" placeholder="SQL goes here" name="name" id='name' required
-                           onChange={this.onChange} value={this.state.name === '' ? '' : this.state.name}/>
-                    <label for="name" class="form__label">SQL goes here:</label>
-                    <p>Please append a semicolon ";" at the end of the query to avoid error.</p>
-                </div>
-            </FormGroup>
-        </Form>;
+        return <div class="sqlFormDiv">
+        <Form onSubmit={this.submitNew} class="sqlForm">
+                    <textarea id="sqlTextArea" name="name" rows="4" placeholder="SQL goes here" required
+                     onChange={this.onChange} value={this.state.name === '' ? '' : this.state.name}>
+                    </textarea><br/>
+                    <input type="submit" value="submit"></input>
+        </Form>
+        </div>
+
     }
 }
 

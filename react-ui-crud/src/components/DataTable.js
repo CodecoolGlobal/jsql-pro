@@ -6,26 +6,9 @@ class DataTable extends Component {
 
 render() {
   const items = this.props.items;
-  const allItems = this.props.allItems;
 
-  return <div>
-  <div>
-    {!allItems || allItems.length <= 0 ?
-    <p>There are no tabels.</p>
-    : <div className='tablenames'>
-      <td>Tables:</td>
-      {
-    allItems.map(allitem =>(
-
-        <td>
-        <p>&nbsp;&nbsp;{allitem.name}</p>
-
-        </td>
-    ))}
-    </div>
-    }
-  </div>
-  <div>{!items || items.length <= 0 ?
+  return <div class="tableDiv">
+  {!items || items.length <= 0 ?
     <p></p>
   :<table striped>
       <thead className="thead-dark">
@@ -48,7 +31,6 @@ render() {
         ))}
       </tbody>
    </table>}
-   </div>
    </div>
 }
 }

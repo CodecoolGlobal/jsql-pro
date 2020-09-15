@@ -24,9 +24,9 @@ namespace ReactASPCrud.Services
             return records;
         }
 
-        public Table GetByTableName(string name)
+        public List<ExpandoObject> GetByTableName(string name)
         {
-            return records.Where(table => table.Name == name).FirstOrDefault();
+            return records.Where(table => table.Name == name).FirstOrDefault().deserialisedRecords;
         }
 
         public List<ExpandoObject> GetSelected()

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import DataTable from './DataTable';
+import TableNames from './TableNames';
 import InputForm from './form/InputForm';
 
 import { API_URL } from '../constants';
@@ -13,10 +14,10 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.getItens();
+    this.getItems();
   }
 
-  getItens = () => {
+  getItems = () => {
     fetch(`${API_URL}/select`)
       .then(res => res.json())
       .then(res => this.setState({ items: res }))
@@ -30,21 +31,17 @@ class Home extends Component {
 
 
   render() {
-    return <Container style={{ paddingTop: "100px" }}>
-      <Row>
-        <Col>
-        <InputForm/>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+    return <Container>
+        <TableNames
+         allItems={this.state.allItems}
+        />
+        <div id="wrapper">
+          <InputForm/>
           <DataTable
-          allItems={this.state.allItems}
             items={this.state.items}
             updateState={this.updateState}
             deleteItemFromState={this.deleteItemFromState} />
-        </Col>
-      </Row>
+        </div>
     </Container>;
   }
 }
