@@ -1,6 +1,7 @@
 ﻿using ReactASPCrud.Models;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Globalization;
 using System.Linq;
 
 namespace ReactASPCrud.Services
@@ -93,7 +94,7 @@ namespace ReactASPCrud.Services
         }
         public void setInput(string _input)
         {
-            Input = _input;
+            Input = _input.ToUpper(new CultureInfo("en-US", false));
         }
 
         public List<string> getMessages() {

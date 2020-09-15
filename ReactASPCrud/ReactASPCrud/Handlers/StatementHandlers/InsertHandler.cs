@@ -73,9 +73,9 @@ namespace ReactASPCrud.Services
         {
             switch (columnType)
             {
-                case "string":
+                case "STRING":
                     return toConvert.ToString();
-                case "int32":
+                case "INT32":
                     if (Int32.TryParse(toConvert, out int result))
                     {
                         return result;
@@ -85,7 +85,7 @@ namespace ReactASPCrud.Services
                         Messages.Add("String could not be parsed.");
                         return null;
                     }
-                case "int64":
+                case "INT64":
                     if (Int64.TryParse(toConvert, out Int64 result1))
                     {
                         return result1;
@@ -95,7 +95,7 @@ namespace ReactASPCrud.Services
                         Messages.Add("String could not be parsed.");
                         return null;
                     }
-                case "bool":
+                case "BOOL":
                     if (Boolean.TryParse(toConvert, out bool result2))
                     {
                         return result2;
