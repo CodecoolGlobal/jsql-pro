@@ -1,0 +1,14 @@
+#sqlTextArea{
+    width: 100%;
+}
+
+.sqlFormDiv
+{
+    margin-left: auto;
+    margin-right: 10px;
+    display: inline-block;
+    text-align: center;
+    vertical-align:top;
+    width: 40%;
+    height: 30%;
+}

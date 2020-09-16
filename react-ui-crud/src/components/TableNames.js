@@ -45,7 +45,10 @@ render() {
   return <div>
       <div>
     {!allItems || allItems.length <= 0 ?
-    <a>There are no tabels.</a>
+    <div className='tablenames'>
+    <a class="tablesTitle">Tables:</a>
+    <input type="text" readOnly class="noTables" value="There are no tabels."></input>
+    </div>
     : <div className='tablenames'>
       <a class="tablesTitle">Tables:</a>
       {
@@ -55,6 +58,9 @@ render() {
     ))}
     </div>
     }
+    {/* {!this.state.on && (
+        <h1>Welcome to maj-sql</h1>
+    )} */}
     {/* toggle */}
     {this.state.on && (
        <div id="toggleTable">

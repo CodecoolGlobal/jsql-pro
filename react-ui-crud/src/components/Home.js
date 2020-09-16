@@ -3,6 +3,7 @@ import { Col, Container, Row } from 'reactstrap';
 import DataTable from './DataTable';
 import TableNames from './TableNames';
 import InputForm from './form/InputForm';
+import Toolbar from './Toolbar';
 
 import { API_URL } from '../constants';
 
@@ -35,6 +36,7 @@ class Home extends Component {
         <TableNames
          allItems={this.state.allItems}
         />
+        <Toolbar/>
         <div id="wrapper">
           <InputForm/>
           <DataTable

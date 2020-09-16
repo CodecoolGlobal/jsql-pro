@@ -4,12 +4,18 @@ import { API_URL } from '../constants';
 
 class DataTable extends Component {
 
+  changeDivStyle(){
+    document.querySelector(".tableDiv").classList.add("ëmptyTableDiv")
+  }
+
 render() {
   const items = this.props.items;
 
   return <div class="tableDiv">
   {!items || items.length <= 0 ?
-    <p></p>
+  <div class="emptyTableDiv">
+    <p class="p">there will be your query result</p>
+    </div>
   :<table striped>
       <thead className="thead-dark">
 
