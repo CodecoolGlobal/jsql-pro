@@ -14,7 +14,7 @@ body {
 }
 
 .container{
-    background-color: rgba(252, 252, 252, 0.8);
+    background-color: rgba(252, 252, 252, 0.85);
     -webkit-backdrop-filter: blur(10px);
     padding: 0px !important;
     width: 75% !important;
@@ -131,7 +131,9 @@ p {
 .tableDiv{
     display: inline-block;
     margin-right: auto;
-    margin-left: 15px;
+    margin-left: auto;
+    width: 55%;
+    overflow-x: auto;
 
 }
 table {
@@ -139,7 +141,8 @@ table {
     border-collapse: collapse;
     margin: 0 auto;
     font-size: 0.9em;
-    min-width: 400px;
+    min-width: 100px;
+    width: 80%;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
