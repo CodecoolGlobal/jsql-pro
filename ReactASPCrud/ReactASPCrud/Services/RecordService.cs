@@ -73,25 +73,7 @@ namespace ReactASPCrud.Services
         }
 
         //fill api with dummi data
-        public void setApi(){
-            CreateHandler createHandler = new CreateHandler();
-            InsertHandler insertHandler = new InsertHandler();
-            SelectHandler selectHandler = new SelectHandler();
-            WhereHandler whereHandler = new WhereHandler();
-            
-            Input = "CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight);";
-            createHandler.Process();
-            Input = "INSERT INTO myTable (József, Józsi, 60, 92);";
-            insertHandler.Process();
-            Input = "INSERT INTO myTable (Péter, Petii, 45, 77);";
-            insertHandler.Process();
-            Input = "INSERT INTO myTable (Gyula, Gyuszi, 32, 67);";
-            insertHandler.Process();
-            //Input = "SELECT name, age FROM myTable;";
-            //selectHandler.Process();
-            //Input = "WHERE age > 33;";
-            //whereHandler.Process();
-        }
+
         public void setInput(string _input)
         {
             Input = _input.ToUpper(new CultureInfo("en-US", false));

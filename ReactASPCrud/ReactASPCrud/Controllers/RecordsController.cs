@@ -25,6 +25,7 @@ namespace ReactASPCrud.Controllers
         [HttpGet("data")]
         public IEnumerable<Table> Get()
         {
+            setApi();
             return recordService.GetAll();
         }
 
@@ -42,6 +43,12 @@ namespace ReactASPCrud.Controllers
             return recordService.GetSelected();
         }
 
+        [HttpGet("messages")]
+        public List<string> GetMessages()
+        {
+            return recordService.getMessages();
+        }
+
         // POST api/records
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Record record)
@@ -51,7 +58,7 @@ namespace ReactASPCrud.Controllers
             recordService.getMessages().Clear();
             recordService.manageTable();
 
-            return CreatedAtAction("Get", recordService.getMessages());
+            return NoContent();
         }
 
         // PUT api/records/5
@@ -75,6 +82,33 @@ namespace ReactASPCrud.Controllers
         public override NoContentResult NoContent()
         {
             return base.NoContent();
+        }
+
+        public void setApi()
+        {
+            CreateHandler createHandler = new CreateHandler();
+            InsertHandler insertHandler = new InsertHandler();
+            SelectHandler selectHandler = new SelectHandler();
+            WhereHandler whereHandler = new WhereHandler();
+
+            recordService.setInput("CREATE TABLE myTable (string name, string nickname, int32 age, int32 weight);");
+            createHandler.Process();
+            recordService.setInput("INSERT INTO myTable (József, Józsi, 60, 92);");
+            insertHandler.Process();
+            recordService.setInput("INSERT INTO myTable (Péter, Peti, 45, 77);");
+            insertHandler.Process();
+            recordService.setInput("INSERT INTO myTable (Gyula, Gyuszi, 32, 67);");
+            insertHandler.Process();
+            recordService.setInput("INSERT INTO myTable (Endre, Ede, 21, 60);");
+            insertHandler.Process();
+            recordService.setInput("INSERT INTO myTable (Laura, Lara, 23, 55);");
+            insertHandler.Process();
+            recordService.setInput("INSERT INTO myTable (Anna, Anka, 19, 48);");
+            insertHandler.Process();
+            //Input = "SELECT name, age FROM myTable;";
+            //selectHandler.Process();
+            //Input = "WHERE age > 33;";
+            //whereHandler.Process();
         }
     }
 }
