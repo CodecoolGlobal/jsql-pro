@@ -52,29 +52,30 @@ namespace ReactASPCrud.Services
                         foreach (KeyValuePair<string, object> kvp in exp)
                         {
                             int counter = 0;
-                            if (!visited) { 
-                            foreach (var exp2 in firstSelectedObjects)
+                            if (!visited)
                             {
-                                foreach (KeyValuePair<string, object> kvp2 in exp2)
+                                foreach (var exp2 in firstSelectedObjects)
                                 {
-                                    if (kvp2.Key.Equals(firstJoinColumn)
-                                        && kvp.Key.Equals(secondJoinColumn)
-                                        && kvp.Value.Equals(kvp2.Value))
+                                    foreach (KeyValuePair<string, object> kvp2 in exp2)
                                     {
-                                        connectionPositions.Add(counter);
+                                        if (kvp2.Key.Equals(firstJoinColumn)
+                                            && kvp.Key.Equals(secondJoinColumn)
+                                            && kvp.Value.Equals(kvp2.Value))
+                                        {
+                                            connectionPositions.Add(counter);
+                                        }
                                     }
+                                    counter++;
                                 }
-                                counter++;
-                            }
-                            if (connectionPositions.Count > 0)
-                            {
-                                foreach (KeyValuePair<string, object> kvp2 in firstSelectedObjects[connectionPositions[0]])
+                                if (connectionPositions.Count > 0)
                                 {
-                                    Util.AddProperty(expado, kvp2.Key, kvp2.Value);
+                                    foreach (KeyValuePair<string, object> kvp2 in firstSelectedObjects[connectionPositions[0]])
+                                    {
+                                        Util.AddProperty(expado, kvp2.Key, kvp2.Value);
+                                    }
+                                    visited = true;
                                 }
-                                visited = true;
                             }
-                        }
 
                             Util.AddProperty(expado, kvp.Key, kvp.Value);
                             //here i have to test what happenes if expado is empty
@@ -83,6 +84,7 @@ namespace ReactASPCrud.Services
                     }
                     //selected columns
                     selected.Clear();
+                    updateSelect();
                     foreach (var exp in innerJoinSelectedObjects)
                     {
                         dynamic expado = new ExpandoObject();
@@ -173,6 +175,17 @@ namespace ReactASPCrud.Services
             string sub = result.Substring(inx, (len) - inx);
             return sub;
 
+        }
+
+        public void updateSelect() {
+            if (Input.Contains("*"))
+            {
+                SelectHandler.selectedValues.Clear();
+                foreach (KeyValuePair<string, object> kvp in innerJoinSelectedObjects[0])
+                {
+                    SelectHandler.selectedValues.Add(kvp.Key);
+                }
+            }
         }
     }
 }

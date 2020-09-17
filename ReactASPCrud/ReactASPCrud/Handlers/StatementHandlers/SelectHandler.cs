@@ -123,7 +123,6 @@ namespace ReactASPCrud.Services
             {
                 selectedValues.Add(kvp.Key);
             }
-
         }
 
         public override bool ValidateInput()
