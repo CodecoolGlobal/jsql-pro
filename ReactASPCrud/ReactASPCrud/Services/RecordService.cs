@@ -43,11 +43,14 @@ namespace ReactASPCrud.Services
                 InsertHandler insertHandler = new InsertHandler();
                 SelectHandler selectHandler = new SelectHandler();
                 WhereHandler whereHandler = new WhereHandler();
+                InnerJoinHandler innerJoinHandler = new InnerJoinHandler();
 
                 createHandler.SetNextHandler(deleteHandler);
                 deleteHandler.SetNextHandler(insertHandler);
                 insertHandler.SetNextHandler(selectHandler);
-                selectHandler.SetNextHandler(whereHandler);
+                selectHandler.SetNextHandler(innerJoinHandler);
+                innerJoinHandler.SetNextHandler(whereHandler);
+
                 createHandler.Process();
             }
             else
@@ -81,6 +84,10 @@ namespace ReactASPCrud.Services
 
         public List<string> getMessages() {
             return Messages;
+        }
+
+        public void clearRecords() {
+            records.Clear();
         }
     }
 }
